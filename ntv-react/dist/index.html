@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./www/css/common.css">
+  <script src="./www/lib/jquery.js"></script>
+  <script src="./www/js/store.js"></script>
+  <style>
+    #game{background: url(./www/assets/img/worldBg.png) no-repeat; background-size: cover;
+      width: 1280px; height: 720px;
+      position: relative;
+    }
+    #menu_maps li{display: inline-block; width: 200px; height: 200px;position: absolute;cursor: pointer;}
+    #menu_maps li img{display: block;width: 100%; height: 100%;}
+    #menu_maps #payOff{width: 200px; height: 80px;position: absolute; right: 15px; bottom: 30px;}
+    #menu_maps #map1{left: 10%;top: 40%;}
+    #menu_maps #map2{left: 42%;top: 40%;}
+    #menu_maps #map3{left: 74%;top: 40%;}
+    #shouzhi{display: block; position: absolute; z-index: 9; left: 48%; top: 52%; width: 100px; height: 100px;}
+    #shouzhi img{width: 100%; height: 100%;}
+  </style>
+</head>
+<body>
+  <div id="game">
+    <div id="canvas"></div>
+    <ul id="menu_maps">
+      <li id="map1" class="" ><img src="./www/assets/img/map1.png" alt="" /></li>
+      <li id="map2" class="" ><img src="./www/assets/img/map3.png" alt="" /></li>
+      <li id="map3" class="" ><img src="./www/assets/img/map2.png" alt="" /></li>
+      <li id="payOff" class="" ><img src="./www/assets/img/payOff.png" alt="" /></li>
+    </ul>
+    <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
+  </div>
+  <script>
+    window.onload= function(){
+      this.boot();
+    }
+    function boot(){
+      var selectIndex = 2;
+      // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对于4
+    　$(document).keydown(function(event){
+        // 这里用 三目 运算符 失效
+        switch(event.keyCode){
+          case 13:
+            switch(selectIndex){
+              case 1:
+                setTimeout(() => {
+                  self.location.href = "./www/views/game";
+                }, 1000)
+                break;
+              case 2:
+                setTimeout(() => {
+                  self.location.href = "./www/views/game";
+                }, 1000)
+                break;
+              case 3:
+                setTimeout(() => {
+                  self.location.href = "./views/game";
+                }, 1000)
+                break;
+              case 4:
+            
+                break;
+              default:
+                break;
+            }
+            break;
+          case 37:
+            if(selectIndex == 1){
+              selectIndex = 4;
+            } else {
+              selectIndex--;
+            }
+            window.keyBoard(selectIndex);
+            break;
+          case 38:
+            if(selectIndex == 4){
+              selectIndex = 1;
+            } else {
+              selectIndex++;
+            }
+            window.keyBoard(selectIndex);
+            break;
+          case 39:
+            if(selectIndex == 4){
+              selectIndex = 1;
+            } else {
+              selectIndex++;
+            }
+            window.keyBoard(selectIndex);
+            break;
+          case 40:
+            if(selectIndex == 1){
+              selectIndex = 4;
+            } else {
+              selectIndex--;
+            }
+            window.keyBoard(selectIndex);
+            break;
+        }  
+  　　});
+    }
+
+    function keyBoard(selectIndex){
+      console.log(selectIndex)
+      var go = document.querySelector("#shouzhi");
+      switch(selectIndex){
+        case 1:
+          go.style.left = "17%";
+          go.style.top = "52%";
+          break;
+        case 2:
+          go.style.left = "48%";
+          go.style.top = "52%";
+          break;
+        case 3:
+          go.style.left = "82%";
+          go.style.top = "52%";
+          break;
+        case 4:
+          go.style.left = "90%";
+          go.style.top = "85%";
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
