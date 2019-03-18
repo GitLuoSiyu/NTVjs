@@ -679,9 +679,11 @@ function runStop(){
 
       break;
     case "up":
+      playerImg.src = "./../assets/img/up-0.png"
 
       break;
     case "down":
+      playerImg.src = "./../assets/img/down-0.png"
 
       break;
     default:
@@ -701,19 +703,31 @@ function runGoUp(){
 
 function runGoRight(){
   // 向右走
-
+  i = i % 4;
+  var name = "./../assets/img/right-" + i + "." + "png";
+  playerImg.src = name;
+  playerImg.style.left = parseInt(playerImg.style.left) + 10 +'px';
+  playerFlag = "right";
 
 }
 
 function runGoDown(){
   // 向下走
-
+  i = i % 4;
+  var name = "./../assets/img/down-" + i + "." + "png";
+  playerImg.src = name;
+  playerImg.style.top = parseInt(playerImg.style.top) + 10 + 'px';
+  playerFlag = "down";
 
 }
 
 function runGoLeft(){
   // 向左走
-
+  i = i % 4;
+  var name = "./../assets/img/left-" + i + "." + "png";
+  playerImg.src = name;
+  playerImg.style.left = parseInt(playerImg.style.left) - 10 + 'px';
+  playerFlag = "left";
 
 }
 
