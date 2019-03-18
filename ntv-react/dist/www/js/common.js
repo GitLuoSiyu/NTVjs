@@ -9,23 +9,31 @@ var speed = 50;           // 每步移动的px
 var playerRota = "right"; // 人物默认面对的方向
 var playerFlag;           // 人物 stop 时的方向
 
-var playerImg = document.querySelector("#hero")
+var playerImg = document.querySelector("#hero");
 var i = 0;                // 人物图片切换的 初始
 var clc = null;           // 人物行走定时
 
+var goldBox = document.querySelector("#gold_box")
+goldBox.style.top = "190px"
+goldBox.style.left = "166px"
+
 var map1info = {
   gameMap:[
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-    [1, 2, 1, 1, 9, 1, 2, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ],
-  coorX:0,   // 地图 1 X 的信息
-  coorY:1    // 地图 1 Y 的信息
+  coorX:1,    // 地图 1 X 的信息
+  coorY:1,    // 地图 1 Y 的信息
+  goldX:3,
+  goldY:3
 }
 var cx = map1info.coorX;  // 原始坐标 cx 由地图json 传递
 var cy = map1info.coorY;  // 原始坐标 cy 由地图json 传递
@@ -60,7 +68,10 @@ function gameOver() {
     preview_walk.style.display = "none";
     preview_left.style.display = "none";
     preview_right.style.display = "none";
-    document.querySelector('#canvas').style.display = "none";
+    // document.querySelector('#canvas').style.display = "none";
+
+    goldBox.style.visibility = "hidden"
+    playerImg.style.visibility = "hidden"
     document.querySelector('#mask').style.display = 'block';
     window.overFocus();
   }
@@ -612,55 +623,69 @@ function runWalk(playerRota){
   console.log("向" + playerRota + '方向')
   switch(playerRota){
     case "right":
-      // console.log("本地图下个运动点的坐标：", map1info.gameMap[coordinate.cx+1][coordinate.cy])
-      if(coordinate.cx >= 9){
+      console.log("本地图下个运动点的坐标：", map1info.gameMap[coordinate.cx+1][coordinate.cy])
+      if(coordinate.cx > 9){
         console.log('超出边界')
-        return
+       
       } else {
         coordinate.cx += 1;
+        window.runGoRight()
       }
       // i = 0;
 			// clearInterval(clc);
 			// clc = setInterval("window.runGoRight(i++);", 60);
-      window.runGoRight()
+
       break;
     case "down":
       console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy+1])
-      if(coordinate.cy >= 9){
+      if(coordinate.cy > 9){
         console.log('超出边界')
-        return
+      
       } else {
         coordinate.cy += 1;
+        window.runGoDown()
       }
 
-      window.runGoDown()
+
       break;
     case "left":
       console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx-1][coordinate.cy])
-      if(coordinate.cx >= 9){
+      if(coordinate.cx > 9){
         console.log('超出边界')
-        return
+        
       } else {
         coordinate.cx -= 1;
+        window.runGoLeft()
       }
      
-      window.runGoLeft()
+
       break;
     case "up":
       console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy-1])
-      if(coordinate.cy >= 9){
+      if(coordinate.cy > 9){
         console.log('超出边界')
-        return
+
       } else {
         coordinate.cy -= 1;
+        window.runGoUp()
       }
 
-      window.runGoUp()
+
       break;
     default:
       break;
   }
   console.log("移动后人物的坐标:", coordinate)
+  if(coordinate.cx == map1info.goldX && coordinate.cy == map1info.goldY){
+    console.log('到达终点')
+    setTimeout(() => {
+      goldBox.style.backgroundPosition = "-30px 0px"
+      game_result = true
+    }, 600);
+    setTimeout(() => {
+      window.gameOver()
+    }, 1000);
+  }
 }
 
 function runLeft(){
@@ -747,7 +772,7 @@ function runGoUp(){
   // i = i % 4;
   var name = "./../assets/img/hero-up.png";
   playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) - 30 + 'px';
+  playerImg.style.top = parseInt(playerImg.style.top) - 55 + 'px';
   playerFlag = "up";
 
   
@@ -758,7 +783,7 @@ function runGoRight(){
   // i = i % 4;
   var name = "./../assets/img/hero-right.png";
   playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) + 30 +'px';
+  playerImg.style.left = parseInt(playerImg.style.left) + 50 +'px';
   playerFlag = "right";
 
 }
@@ -768,7 +793,7 @@ function runGoDown(){
   // i = i % 4;
   var name = "./../assets/img/hero-down.png";
   playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) + 30 + 'px';
+  playerImg.style.top = parseInt(playerImg.style.top) + 55 + 'px';
   playerFlag = "down";
 
 }
@@ -778,7 +803,7 @@ function runGoLeft(){
   // i = i % 4;
   var name = "./../assets/img/hero-left.png";
   playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) - 30 + 'px';
+  playerImg.style.left = parseInt(playerImg.style.left) - 50 + 'px';
   playerFlag = "left";
 
 }

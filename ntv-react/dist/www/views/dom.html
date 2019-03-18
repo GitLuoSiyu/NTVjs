@@ -10,7 +10,10 @@
 </head>
 <body>
   <div id="backgroud">
-    <img id="hero" src="./../assets/img/hero-right.png" />
+    <div id="dom_map">
+      <div id="gold_box"></div>
+      <img id="hero" src="./../assets/img/hero-right.png" />
+    </div>
     <div id="game_tip">
       <!-- <div id="map_number"><img src="./../assets/img/maptitle/tipMap1.png" alt="" /></div> -->
       <div id="map_title">关卡一的提示语</div>
@@ -90,8 +93,9 @@
     window.onload = function(){
         this.startDom();
         var playerImg = document.querySelector("#hero")
-        playerImg.style.top = '150px'
-        playerImg.style.left = '600px'
+        playerImg.style.top = '58px'
+        playerImg.style.left = '58px'
+
     }
 
     

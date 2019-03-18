@@ -130,4 +130,6 @@ span,p,div{
 #over_select {position: absolute; display: inline-block; outline: none; width: 200px; height: 90px; z-index: 102; left: 34%; top: 60.8%; background: url(./../assets/img/over_select.png) no-repeat center;}
 
 #canvas {position: absolute; display: block; z-index: 999;left: 180px; top: 240px; background: chartreuse}
-#hero{position: absolute; z-index: 105; }
+#dom_map{position: absolute; display: inline-block; width: 520px; height: 720px; background: url(./../assets//img//maps/map001.png) no-repeat center; background-size: 100%; left: 250px; top: 215px; z-index: 99;}
+#hero{position: absolute; z-index: 110; }
+#gold_box{position: absolute; width: 30px; height: 30px; z-index: 111;;background: url(./../assets//img/block.png) no-repeat; background-position: 0 30px; background-position: 0px 0px;}
