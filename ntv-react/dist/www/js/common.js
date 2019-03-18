@@ -7,6 +7,11 @@ var loopItems = []        // 循环中的死循环
 var mingLingIndex = 1;    // 默认是1，1-order框 2-loop框 这里不用boolean值，防止以后增加业务
 var speed = 50;           // 每步移动的px
 var playerRota = "right"; // 人物默认面对的方向
+var playerFlag;           // 人物 stop 时的方向
+
+var playerImg = document.querySelector("#playerImg")
+var i = 0;                // 人物图片切换的 初始
+var clc = null;           // 人物行走定时
 
 var map1info = {
   gameMap:[
@@ -665,6 +670,52 @@ function runLoop(){
 
 }
 
+function runStop(){
+  switch(playerFlag){
+    case "left":
+
+      break;
+    case "right":
+
+      break;
+    case "up":
+
+      break;
+    case "down":
+
+      break;
+    default:
+      break;
+  }
+}
+
+function runGoUp(){
+  // 向上走
+  i = i % 4;
+  var name = "img/up-" + i + "." + "png";
+  playerImg.src = name;
+  playerImg.style.top = parseInt(playerImg.style.top) - 10 + 'px';
+  playerFlag = "up";
+
+}
+
+function runGoRight(){
+  // 向右走
+
+
+}
+
+function runGoDown(){
+  // 向下走
+
+
+}
+
+function runGoLeft(){
+  // 向左走
+
+
+}
 
 
 /**
