@@ -130,3 +130,4 @@ span,p,div{
 #over_select {position: absolute; display: inline-block; outline: none; width: 200px; height: 90px; z-index: 102; left: 34%; top: 60.8%; background: url(./../assets/img/over_select.png) no-repeat center;}
 
 #canvas {position: absolute; display: block; z-index: 999;left: 180px; top: 240px; background: chartreuse}
+#hero{position: absolute; left: 700px; top: 150px;z-index: 105; }

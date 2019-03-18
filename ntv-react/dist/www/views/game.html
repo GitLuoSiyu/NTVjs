@@ -11,7 +11,7 @@
 <body>
   <div id="backgroud">
     <div id="canvas"></div>
-    <div id="playerImg"></div>
+    <img id="hero" src="./../assets/img/hero-right.png" />
     <div id="game_tip">
       <!-- <div id="map_number"><img src="./../assets/img/maptitle/tipMap1.png" alt="" /></div> -->
       <div id="map_title">关卡一的提示语</div>
@@ -121,7 +121,7 @@
         game.physics.startSystem(Phaser.ARCADE);
         gameMap = game.add.image(0,0, 'gameCanvas');
         box = game.add.sprite(0,0,'box');
-        box.x = 90;
+        box.x = 160;
         box.y = 40;
 			  game.physics.arcade.enable(box);
         player = game.add.sprite(42,16, 'player');
@@ -192,15 +192,16 @@
           },2000)
 			  });
 
-        // if (cursors.left.isDown) {
-        //   player.body.velocity.x = -150;
-        //   // window.showSelect()
-        // } else if (cursors.right.isDown) {
-        //   player.body.velocity.x = 150;
-        // } else {
-        //   player.body.velocity.x = 0;
-        //   player.frame = 0;
-        // }
+        if (cursors.left.isDown) {
+          player.body.velocity.x = -150;
+          // window.showSelect()
+        } else if (cursors.right.isDown) {
+          player.body.velocity.x = 150;
+        } else {
+          player.body.velocity.x = 0;
+          player.frame = 0;
+        }
+
       }
     }
     

@@ -9,7 +9,9 @@ var speed = 50;           // 每步移动的px
 var playerRota = "right"; // 人物默认面对的方向
 var playerFlag;           // 人物 stop 时的方向
 
-var playerImg = document.querySelector("#playerImg")
+var playerImg = document.querySelector("#hero")
+playerImg.style.top = '150px'
+playerImg.style.left = '600px'
 var i = 0;                // 人物图片切换的 初始
 var clc = null;           // 人物行走定时
 
@@ -543,6 +545,7 @@ function runLoop(loops){
     switch(loops[i]){
       case "walk":
         window.runWalk()
+
         break;
       case "left":
         window.runLeft()
@@ -587,37 +590,50 @@ function play(){
         switch(orders[i]){
           case "walk":
             window.runWalk(playerRota)
+
             break;
           case "left":
             window.runLeft()
+
             break;
           case "right":
             window.runRight()
+
             break;
           default:
             break;
         }
-        // window.walk()
         console.log("第"+(i+1)+"个命令后 人物的方向:",playerRota)
-      }, i * 800)
+      }, i * 600)
     })(i);
   }
+  // window.runStop()
 }
 
 function runWalk(playerRota){
-  console.log("向" + playerRota + '方向前进一格')
+  console.log("向" + playerRota + '方向')
   switch(playerRota){
     case "right":
       coordinate.cx += 1;
+      // i = 0;
+			// clearInterval(clc);
+			// clc = setInterval("window.runGoRight(i++);", 60);
+      window.runGoRight()
       break;
     case "down":
       coordinate.cy += 1;
+
+      window.runGoDown()
       break;
     case "left":
       coordinate.cx -= 1;
+
+      window.runGoLeft()
       break;
     case "up":
       coordinate.cy -= 1;
+
+      window.runGoUp()
       break;
     default:
       break;
@@ -630,19 +646,24 @@ function runLeft(){
   switch(playerRota){
     case "right":
       playerRota = "up";
+      
       break;
     case "down":
       playerRota = "right";
+      
       break;
     case "up":
       playerRota = "left";
+      
       break;
     case "left":
       playerRota = "down"
+      
       break;
     default:
       break;
   }
+  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
 }
 
 function runRight(){
@@ -650,19 +671,24 @@ function runRight(){
   switch(playerRota){
     case "right":
       playerRota = "down";
+
       break;
     case "down":
       playerRota = "left";
+
       break;
     case "up":
       playerRota = "right";
+
       break;
     case "left":
-      playerRota = "up"
+      playerRota = "up";
+
       break;
     default:
       break;
   }
+  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
 }
 
 function runLoop(){
@@ -673,60 +699,64 @@ function runLoop(){
 function runStop(){
   switch(playerFlag){
     case "left":
+      playerImg.src = "./../assets/img/hero-left.png"
 
       break;
     case "right":
+      playerImg.src = "./../assets/img/hero-right.png"
 
       break;
     case "up":
-      playerImg.src = "./../assets/img/up-0.png"
+      playerImg.src = "./../assets/img/hero-up.png"
 
       break;
     case "down":
-      playerImg.src = "./../assets/img/down-0.png"
+      playerImg.src = "./../assets/img/hero-down.png"
 
       break;
     default:
       break;
   }
+  clearInterval(clc)
 }
 
 function runGoUp(){
   // 向上走
-  i = i % 4;
-  var name = "img/up-" + i + "." + "png";
+  // i = i % 4;
+  var name = "./../assets/img/hero-up.png";
   playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) - 10 + 'px';
+  playerImg.style.top = parseInt(playerImg.style.top) - 30 + 'px';
   playerFlag = "up";
 
+  
 }
 
 function runGoRight(){
   // 向右走
-  i = i % 4;
-  var name = "./../assets/img/right-" + i + "." + "png";
+  // i = i % 4;
+  var name = "./../assets/img/hero-right.png";
   playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) + 10 +'px';
+  playerImg.style.left = parseInt(playerImg.style.left) + 30 +'px';
   playerFlag = "right";
 
 }
 
 function runGoDown(){
   // 向下走
-  i = i % 4;
-  var name = "./../assets/img/down-" + i + "." + "png";
+  // i = i % 4;
+  var name = "./../assets/img/hero-down.png";
   playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) + 10 + 'px';
+  playerImg.style.top = parseInt(playerImg.style.top) + 30 + 'px';
   playerFlag = "down";
 
 }
 
 function runGoLeft(){
   // 向左走
-  i = i % 4;
-  var name = "./../assets/img/left-" + i + "." + "png";
+  // i = i % 4;
+  var name = "./../assets/img/hero-left.png";
   playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) - 10 + 'px';
+  playerImg.style.left = parseInt(playerImg.style.left) - 30 + 'px';
   playerFlag = "left";
 
 }
