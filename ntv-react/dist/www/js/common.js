@@ -10,8 +10,6 @@ var playerRota = "right"; // 人物默认面对的方向
 var playerFlag;           // 人物 stop 时的方向
 
 var playerImg = document.querySelector("#hero")
-playerImg.style.top = '150px'
-playerImg.style.left = '600px'
 var i = 0;                // 人物图片切换的 初始
 var clc = null;           // 人物行走定时
 
