@@ -8,6 +8,7 @@ var mingLingIndex = 1;    // 默认是1，1-order框 2-loop框 这里不用boole
 var speed = 50;           // 每步移动的px
 var playerRota = "right"; // 人物默认面对的方向
 var playerFlag;           // 人物 stop 时的方向
+var nextCoorKey;          // 下个运动坐标的下标值 0-空白区 1-运行路块 2-宝箱 3-香蕉 4-boss
 
 var playerImg = document.querySelector("#hero");
 var i = 0;                // 人物图片切换的 初始
@@ -29,7 +30,7 @@ var map1info = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ],
+  ],          // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
   coorX:1,    // 地图 1 X 的信息
   coorY:1,    // 地图 1 Y 的信息
   goldX:3,
@@ -619,17 +620,83 @@ function play(){
   // window.runStop()
 }
 
-function runWalk(playerRota){
-  console.log("向" + playerRota + '方向')
+function runRotation(){
   switch(playerRota){
     case "right":
-      console.log("本地图下个运动点的坐标：", map1info.gameMap[coordinate.cx+1][coordinate.cy])
+      coordinate.cy += 1;
+      break;
+    case "down":
+      coordinate.cx += 1;
+      break;
+    case "left":
+      coordinate.cy -= 1;
+      break;
+    case "up":
+      coordinate.cx -= 1;
+      break;
+    default:
+      break;
+  }
+}
+
+function runCoorPlayer(){
+  console.log('目前的方向是：',playerRota)
+  switch(playerRota){
+    case "left":
+      window.runGoLeft()
+      break;
+    case "right":
+      window.runGoRight()
+      break;
+    case "up":
+      window.runGoUp()
+      break;
+    case "down":
+        window.runGoDown()
+      break;
+    default:
+      break;
+  }
+}
+
+function getCoorInfo(item){
+  switch(item){
+    case 0:
+      console.log('前方的坐标是0，不能走')
+      break;
+    case 1:
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()
+      break;
+    case 2:
+      console.log('前面的坐标是宝箱，即将进行碰撞检测')
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()      
+      break;
+    case 3:
+      console.log('前面的坐标是 其他物品 ，即将进行碰撞检测')
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()
+      break;
+    default:
+      break;
+  }
+}
+
+function runWalk(playerRota){
+  // console.log("向" + playerRota + '方向')
+  switch(playerRota){
+    case "right":
+      console.log("下个坐标：", map1info.gameMap[coordinate.cx][coordinate.cy+1])
       if(coordinate.cx > 9){
         console.log('超出边界')
-       
       } else {
-        coordinate.cx += 1;
-        window.runGoRight()
+        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy+1])
+        // coordinate.cx += 1;
+        // window.runGoRight()
       }
       // i = 0;
 			// clearInterval(clc);
@@ -637,37 +704,40 @@ function runWalk(playerRota){
 
       break;
     case "down":
-      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy+1])
+      // console.log("下个坐标：",map1info.gameMap[coordinate.cx+1][coordinate.cy])
       if(coordinate.cy > 9){
         console.log('超出边界')
       
       } else {
-        coordinate.cy += 1;
-        window.runGoDown()
+        window.getCoorInfo(map1info.gameMap[coordinate.cx+1][coordinate.cy])
+        // coordinate.cy += 1;
+        // window.runGoDown()
       }
 
 
       break;
     case "left":
-      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx-1][coordinate.cy])
+      // console.log("下个坐标：",map1info.gameMap[coordinate.cx][coordinate.cy-1])
       if(coordinate.cx > 9){
         console.log('超出边界')
         
       } else {
-        coordinate.cx -= 1;
-        window.runGoLeft()
+        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy-1])
+        // coordinate.cx -= 1;
+        // window.runGoLeft()
       }
      
 
       break;
     case "up":
-      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy-1])
+      // console.log("下个坐标：",map1info.gameMap[coordinate.cx-1][coordinate.cy])
       if(coordinate.cy > 9){
         console.log('超出边界')
 
       } else {
-        coordinate.cy -= 1;
-        window.runGoUp()
+        window.getCoorInfo(map1info.gameMap[coordinate.cx-1][coordinate.cy])
+        // coordinate.cy -= 1;
+        // window.runGoUp()
       }
 
 
@@ -684,7 +754,7 @@ function runWalk(playerRota){
     }, 600);
     setTimeout(() => {
       window.gameOver()
-    }, 1000);
+    }, 1300);
   }
 }
 
