@@ -17,16 +17,16 @@ var clc = null;           // 人物行走定时
 
 var map1info = {
   gameMap:[
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 9, 1, 2, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+    [1, 2, 1, 1, 9, 1, 2, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ],
-  coorX:6,   // 地图 1 X 的信息
+  coorX:0,   // 地图 1 X 的信息
   coorY:1    // 地图 1 Y 的信息
 }
 var cx = map1info.coorX;  // 原始坐标 cx 由地图json 传递
@@ -614,24 +614,48 @@ function runWalk(playerRota){
   console.log("向" + playerRota + '方向')
   switch(playerRota){
     case "right":
-      coordinate.cx += 1;
+      // console.log("本地图下个运动点的坐标：", map1info.gameMap[coordinate.cx+1][coordinate.cy])
+      if(coordinate.cx >= 9){
+        console.log('超出边界')
+        return
+      } else {
+        coordinate.cx += 1;
+      }
       // i = 0;
 			// clearInterval(clc);
 			// clc = setInterval("window.runGoRight(i++);", 60);
       window.runGoRight()
       break;
     case "down":
-      coordinate.cy += 1;
+      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy+1])
+      if(coordinate.cy >= 9){
+        console.log('超出边界')
+        return
+      } else {
+        coordinate.cy += 1;
+      }
 
       window.runGoDown()
       break;
     case "left":
-      coordinate.cx -= 1;
-
+      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx-1][coordinate.cy])
+      if(coordinate.cx >= 9){
+        console.log('超出边界')
+        return
+      } else {
+        coordinate.cx -= 1;
+      }
+     
       window.runGoLeft()
       break;
     case "up":
-      coordinate.cy -= 1;
+      console.log("本地图下个运动点的坐标：",map1info.gameMap[coordinate.cx][coordinate.cy-1])
+      if(coordinate.cy >= 9){
+        console.log('超出边界')
+        return
+      } else {
+        coordinate.cy -= 1;
+      }
 
       window.runGoUp()
       break;
@@ -760,6 +784,10 @@ function runGoLeft(){
   playerFlag = "left";
 
 }
+
+
+
+
 
 
 /**
