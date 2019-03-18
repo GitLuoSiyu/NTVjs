@@ -1,24 +1,4 @@
-// 地图数据
-var map1info = {
-  gameMap:[
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ],          // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
-  coorX:1,    // 地图 1 X 的信息
-  coorY:1,    // 地图 1 Y 的信息
-  goldX:3,
-  goldY:3,
-  goldTop:"190px",
-  goldLeft:"166px"
-}
+// 地图数据 在 store.js， common.js必须在 store 之后引用
 
 // 游戏数据
 var game_result = false;                                              // 游戏是否结束，是否通关
@@ -53,7 +33,6 @@ var goldBox = document.querySelector("#gold_box");                    // 宝箱
 goldBox.style.top = map1info.goldTop;                                 // 宝箱的 top 值
 goldBox.style.left = map1info.goldLeft;                               // 宝箱的 left 值
 
-
 // DOM 操作
 function gameOver() {
   // 游戏结束，选项框默认下标，这里不用 booelan ,防止以后有坑
@@ -73,6 +52,10 @@ function gameOver() {
     goldBox.style.visibility = "hidden"
     playerImg.style.visibility = "hidden"
     document.querySelector('#mask').style.display = 'block';
+
+    // 更新 store
+    var getPlayerInfo = window.localStorage.getItem("playerInfo")
+
     window.overFocus();
   }
 }
@@ -350,7 +333,7 @@ function runWalk(playerRota){
     default:
       break;
   }
-  console.log("移动后人物的坐标:", coordinate)
+  console.log("运动后的坐标(横y竖x):\n", coordinate)
   if(coordinate.cx == map1info.goldX && coordinate.cy == map1info.goldY){
     console.log('到达终点，游戏即将结束')
     setTimeout(() => {
@@ -599,7 +582,6 @@ function startDom() {
   // 没有 6
   // 7-walk 8-left 9-right 10-cancel
   // 11-loop  循环
-  console.log('初始化 DOM 操作');
   $(document).keydown(function(event) {
     switch (event.keyCode) {
       case 13:

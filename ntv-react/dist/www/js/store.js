@@ -6,7 +6,7 @@ var playerInfo = {
   name: '',          // 用户名称
   playerLevel: 1,    // 用户英雄等级，无意义
   nowLevel: 1,       // 目前已通关的等级 
-  maxLevel: 3,       // 可玩的最大等级
+  maxLevel: 1,       // 可玩的最大等级
   vip: false,        // 是否是付费用户
   score: 0,          // 玩家积分
   package: [],       // 背包物品
@@ -14,7 +14,9 @@ var playerInfo = {
   payContent: false, // 是否显示 付费窗口
 }
 
-
+// 首次加载存入 localStorage
+var playerInfoJson = JSON.stringify(playerInfo)
+window.localStorage.setItem("playerInfo", playerInfoJson)
 
 
 
@@ -31,7 +33,7 @@ var playerInfo = {
 /**
  * 地图属性 
  */
-var map2info = {
+var map1info = {
   gameMap:[
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
@@ -52,7 +54,7 @@ var map2info = {
   goldLeft:"166px"
 }
 
-var map3info = {
+var map2info = {
   gameMap:[
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
