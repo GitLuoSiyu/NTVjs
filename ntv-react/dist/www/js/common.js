@@ -1,23 +1,4 @@
-// 游戏数据
-var game_result = false;  // 游戏是否结束，是否通关
-var selectOrderIndex = 1; // 游戏手指的下表
-var orders = [];          // 命令栈的长度
-var loops = [];           // 循环栈的长度
-var loopItems = []        // 循环中的死循环
-var mingLingIndex = 1;    // 默认是1，1-order框 2-loop框 这里不用boolean值，防止以后增加业务
-var speed = 50;           // 每步移动的px
-var playerRota = "right"; // 人物默认面对的方向
-var playerFlag;           // 人物 stop 时的方向
-var nextCoorKey;          // 下个运动坐标的下标值 0-空白区 1-运行路块 2-宝箱 3-香蕉 4-boss
-
-var playerImg = document.querySelector("#hero");
-var i = 0;                // 人物图片切换的 初始
-var clc = null;           // 人物行走定时
-
-var goldBox = document.querySelector("#gold_box")
-goldBox.style.top = "190px"
-goldBox.style.left = "166px"
-
+// 地图数据
 var map1info = {
   gameMap:[
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -34,24 +15,43 @@ var map1info = {
   coorX:1,    // 地图 1 X 的信息
   coorY:1,    // 地图 1 Y 的信息
   goldX:3,
-  goldY:3
+  goldY:3,
+  goldTop:"190px",
+  goldLeft:"166px"
 }
-var cx = map1info.coorX;  // 原始坐标 cx 由地图json 传递
-var cy = map1info.coorY;  // 原始坐标 cy 由地图json 传递
-var coordinate = {cx, cy};// 使用DOM地图，假设人物原始坐标(cx, cy);
 
-var over_focus = "next";  // 游戏结束，默认选中的是 next
+// 游戏数据
+var game_result = false;                                              // 游戏是否结束，是否通关
+var selectOrderIndex = 1;                                             // 游戏手指的下表
+var orders = [];                                                      // 命令栈的长度
+var loops = [];                                                       // 循环栈的长度
+var loopItems = []                                                    // 循环中的死循环
+var mingLingIndex = 1;                                                // 默认是1，1-order框 2-loop框 这里不用boolean值，防止以后增加业务
+var speed = 50;                                                       // 每步移动的px
+var playerRota = "right";                                             // 人物默认面对的方向
+var playerFlag;                                                       // 人物 stop 时的方向
+var nextCoorKey;                                                      // 下个运动坐标的下标值 0-空白区 1-运行路块 2-宝箱 3-香蕉 4-boss
+var cx = map1info.coorX;                                              // 原始坐标 cx 由地图json 传递
+var cy = map1info.coorY;                                              // 原始坐标 cy 由地图json 传递
+var coordinate = {cx, cy};                                            // 使用DOM地图，假设人物原始坐标(cx, cy);
+var over_focus = "next";                                              // 游戏结束，默认选中的是 next
+var i = 0;                                                            // 人物图片切换的 初始
+var clc = null;                                                       // 人物行走定时
 
-var overSelect = document.querySelector('#over_select');
-var ordersLi = document.querySelectorAll('#orders li');
-var loopLi = document.querySelectorAll('#xun_orders li');
-var btnFocus = document.querySelector("#btn_select");
-var ordersFocus = document.querySelector("#order_select");
-var playFocus = document.querySelector("#playFocus");
-var footFocus = document.querySelector("#footFocus");
-var preview_walk = document.querySelector("#order_view_walk");
-var preview_left = document.querySelector("#order_view_left");
-var preview_right = document.querySelector("#order_view_right");
+var overSelect = document.querySelector('#over_select');              // 游戏结束时的 底部选择框
+var ordersLi = document.querySelectorAll('#orders li');               // 命令栈里的 每个子 order
+var loopLi = document.querySelectorAll('#xun_orders li');             // 循环栈里的 每个子 order
+var btnFocus = document.querySelector("#btn_select");                 // 前进、左转、右转、循环、取消 选择框
+var ordersFocus = document.querySelector("#order_select");            // 命令栈、循环栈 切换时的选择框
+var playFocus = document.querySelector("#playFocus");                 // play 按钮的框
+var footFocus = document.querySelector("#footFocus");                 // 底部 重玩 和 返回上一关的选择框
+var preview_walk = document.querySelector("#order_view_walk");        // 前进的略览图
+var preview_left = document.querySelector("#order_view_left");        // 左转的略览图
+var preview_right = document.querySelector("#order_view_right");      // 右转的略览图
+var playerImg = document.querySelector("#hero");                      // 主角：猴子
+var goldBox = document.querySelector("#gold_box");                    // 宝箱
+goldBox.style.top = map1info.goldTop;                                 // 宝箱的 top 值
+goldBox.style.left = map1info.goldLeft;                               // 宝箱的 left 值
 
 
 // DOM 操作
@@ -60,7 +60,7 @@ function gameOver() {
   if (game_result === false) {
     console.log('该关卡还没结束');
   } else {
-    console.log('该关卡已经通关,显示蒙版');
+    // console.log('该关卡已经通关,显示蒙版');
     playerRota = "right";
     btnFocus.style.visibility = "hidden";
     ordersFocus.style.display = "none";
@@ -70,7 +70,6 @@ function gameOver() {
     preview_left.style.display = "none";
     preview_right.style.display = "none";
     // document.querySelector('#canvas').style.display = "none";
-
     goldBox.style.visibility = "hidden"
     playerImg.style.visibility = "hidden"
     document.querySelector('#mask').style.display = 'block';
@@ -78,6 +77,438 @@ function gameOver() {
   }
 }
 
+function addOrder(item) {
+  if (item != 'cancel') {
+    if (orders.length < 8) {
+      orders.push(item);
+    } else {
+      console.log('栈满了');
+    }
+  } else {
+    if (orders.length <= 0) {
+      console.log('栈已经清空了，不能再删了');
+    } else {
+      orders.pop();
+      window.updateOrder();
+    }
+  }
+  // console.log(orders);
+  // 更新渲染
+  window.updateOrder();
+}
+
+function updateOrder() {
+  for (var i = 0; i <= orders.length; i++) {
+    switch (orders[i]) {
+      case 'walk':
+        ordersLi[i].className = 'order_walk';
+
+        break;
+      case 'left':
+        ordersLi[i].className = 'order_left';
+
+        break;
+      case 'right':
+        ordersLi[i].className = 'order_right';
+
+        break;
+      case 'loop':
+        ordersLi[i].className = 'order_loop';
+
+        break;
+      default:
+        if (ordersLi[i]) {
+          ordersLi[i].className = '';
+        } else {
+          //
+        }
+        break;
+    }
+  }
+}
+
+function addLoop(item) {
+  if (item != 'cancel') {
+    if (loops.length < 8) {
+      loops.push(item);
+    } else {
+      console.log('栈满了');
+    }
+  } else {
+    if (loops.length <= 0) {
+      console.log('栈已经清空了，不能再删了');
+    } else {
+      loops.pop();
+      window.updateLoop();
+    }
+  }
+  // console.log(loops);
+  // 更新渲染
+  window.updateLoop();
+}
+
+function updateLoop() {
+  for (var i = 0; i <= loops.length; i++) {
+    switch (loops[i]) {
+      case 'walk':
+        loopLi[i].className = 'loop_walk';
+
+        break;
+      case 'left':
+        loopLi[i].className = 'loop_left';
+
+        break;
+      case 'right':
+        loopLi[i].className = 'loop_right';
+
+        break;
+      case 'loop':
+        loopLi[i].className = 'loop_loop';
+
+        break;
+      default:
+        if (loopLi[i]) {
+          loopLi[i].className = '';
+        } else {
+          //
+        }
+        break;
+    }
+  }
+}
+
+function showSelect(selectOrderIndex) {
+  // console.log('点击了外部指令')
+}
+
+function runLoop(loops){
+  console.log("查看栈中的情况",loops);
+  for(var i = 0; i < loops.length; i++){
+    switch(loops[i]){
+      case "walk":
+        window.runWalk()
+        break;
+      case "left":
+        window.runLeft()
+        break;
+      case "right":
+        window.runRight()
+        break;
+      case "loop":
+        window.runLoop()
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+function walk(ele, target){
+  // target = parseInt(ip.style.left) + speed;
+  // animate(ip, target)
+  console.log("人物的方向", playerRota)
+}
+
+function animate(ele, target){
+  clearInterval(ele.timer)
+  var aniamteSpeed = 1;
+  ele.timer = setInterval(function () {
+    var val = target - parseInt(ele.style.left)
+    ele.style.left = parseInt(ele.style.left) + speed + "px";
+    if(val == 0){
+      ele.style.left = targer + "px";
+      clearInterval(ele.timer);
+    }
+  },10)
+}
+
+function play(){
+  // console.log("即将执行命令框里的指令：",orders)
+  for(var i = 0; i < orders.length; i++) {
+    (function(i) {
+      setTimeout(function() {
+        switch(orders[i]){
+          case "walk":
+            window.runWalk(playerRota)
+            break;
+          case "left":
+            window.runLeft()
+            break;
+          case "right":
+            window.runRight()
+            break;
+          default:
+            break;
+        }
+        // console.log("第"+(i+1)+"个命令后 人物的方向:",playerRota)
+      }, i * 600)
+    })(i);
+  }
+  // window.runStop()
+}
+
+function runRotation(){
+  switch(playerRota){
+    case "right":
+      coordinate.cy += 1;
+      break;
+    case "down":
+      coordinate.cx += 1;
+      break;
+    case "left":
+      coordinate.cy -= 1;
+      break;
+    case "up":
+      coordinate.cx -= 1;
+      break;
+    default:
+      break;
+  }
+}
+
+function runCoorPlayer(){
+  // console.log('目前的方向是：',playerRota)
+  switch(playerRota){
+    case "left":
+      window.runGoLeft()
+      break;
+    case "right":
+      window.runGoRight()
+      break;
+    case "up":
+      window.runGoUp()
+      break;
+    case "down":
+        window.runGoDown()
+      break;
+    default:
+      break;
+  }
+}
+
+function getCoorInfo(item){
+  switch(item){
+    case 0:
+      // console.log('前方的坐标是0，不能走')
+      break;
+    case 1:
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()
+      break;
+    case 2:
+      // console.log('前面的坐标是宝箱，即将进行碰撞检测')
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()      
+      break;
+    case 3:
+      // console.log('前面的坐标是 其他物品 ，即将进行碰撞检测')
+      window.runRotation()
+      // window.runGoRight()
+      window.runCoorPlayer()
+      break;
+    default:
+      break;
+  }
+}
+
+function runWalk(playerRota){
+  // console.log("向" + playerRota + '方向')
+  switch(playerRota){
+    case "right":
+      if(coordinate.cx > 9){
+        console.log('超出边界')
+      } else {
+        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy+1])
+      }
+      // i = 0;
+			// clearInterval(clc);
+			// clc = setInterval("window.runGoRight(i++);", 60);
+      break;
+    case "down":
+      if(coordinate.cy > 9){
+        console.log('超出边界')
+      } else {
+        window.getCoorInfo(map1info.gameMap[coordinate.cx+1][coordinate.cy])
+      }
+      break;
+    case "left":
+      if(coordinate.cx > 9){
+        console.log('超出边界')
+      } else {
+        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy-1])
+      }
+      break;
+    case "up":
+      if(coordinate.cy > 9){
+        console.log('超出边界')
+      } else {
+        window.getCoorInfo(map1info.gameMap[coordinate.cx-1][coordinate.cy])
+      }
+      break;
+    default:
+      break;
+  }
+  console.log("移动后人物的坐标:", coordinate)
+  if(coordinate.cx == map1info.goldX && coordinate.cy == map1info.goldY){
+    console.log('到达终点，游戏即将结束')
+    setTimeout(() => {
+      goldBox.style.backgroundPosition = "-30px 0px"
+      game_result = true
+    }, 600);
+    setTimeout(() => {
+      window.gameOver()
+    }, 1300);
+  }
+}
+
+function runLeft(){
+  // 左转指令已修复， 函数中不要传值，每次都从 store 拿最新的
+  switch(playerRota){
+    case "right":
+      playerRota = "up";
+      
+      break;
+    case "down":
+      playerRota = "right";
+      
+      break;
+    case "up":
+      playerRota = "left";
+      
+      break;
+    case "left":
+      playerRota = "down"
+      
+      break;
+    default:
+      break;
+  }
+  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
+}
+
+function runRight(){
+  // 右转指令没有问题，已确认 20190316
+  switch(playerRota){
+    case "right":
+      playerRota = "down";
+
+      break;
+    case "down":
+      playerRota = "left";
+
+      break;
+    case "up":
+      playerRota = "right";
+
+      break;
+    case "left":
+      playerRota = "up";
+
+      break;
+    default:
+      break;
+  }
+  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
+}
+
+function runLoop(){
+  console.log('执行循环')
+
+}
+
+function runStop(){
+  switch(playerFlag){
+    case "left":
+      playerImg.src = "./../assets/img/hero-left.png"
+
+      break;
+    case "right":
+      playerImg.src = "./../assets/img/hero-right.png"
+
+      break;
+    case "up":
+      playerImg.src = "./../assets/img/hero-up.png"
+
+      break;
+    case "down":
+      playerImg.src = "./../assets/img/hero-down.png"
+
+      break;
+    default:
+      break;
+  }
+  clearInterval(clc)
+}
+
+function runGoUp(){
+  // 向上走
+  // i = i % 4;
+  var name = "./../assets/img/hero-up.png";
+  playerImg.src = name;
+  playerImg.style.top = parseInt(playerImg.style.top) - 55 + 'px';
+  playerFlag = "up";
+
+  
+}
+
+function runGoRight(){
+  // 向右走
+  // i = i % 4;
+  var name = "./../assets/img/hero-right.png";
+  playerImg.src = name;
+  playerImg.style.left = parseInt(playerImg.style.left) + 50 +'px';
+  playerFlag = "right";
+
+}
+
+function runGoDown(){
+  // 向下走
+  // i = i % 4;
+  var name = "./../assets/img/hero-down.png";
+  playerImg.src = name;
+  playerImg.style.top = parseInt(playerImg.style.top) + 55 + 'px';
+  playerFlag = "down";
+
+}
+
+function runGoLeft(){
+  // 向左走
+  // i = i % 4;
+  var name = "./../assets/img/hero-left.png";
+  playerImg.src = name;
+  playerImg.style.left = parseInt(playerImg.style.left) - 50 + 'px';
+  playerFlag = "left";
+
+}
+
+
+
+
+
+
+/**
+ * 动作缩略图
+ */
+function showPreview(selectOrderIndex) {
+  // console.log(selectOrderIndex);
+  switch (selectOrderIndex) {
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    default:
+      break;
+  }
+} 
+
+
+/**
+ * 选项框
+ */
 function overFocus(over_index){
   console.log('即将进行选择')
   //  overSelect 默认选中继续下一关
@@ -169,7 +600,6 @@ function startDom() {
   // 7-walk 8-left 9-right 10-cancel
   // 11-loop  循环
   console.log('初始化 DOM 操作');
-  console.time;
   $(document).keydown(function(event) {
     switch (event.keyCode) {
       case 13:
@@ -315,7 +745,6 @@ function startDom() {
 
 // 手指按下的命令
 function startSelect(selectOrderIndex) {
-  var startGo;
   switch (selectOrderIndex) {
     case 1:
       // console.log('目前选中的是:命令栈');
@@ -426,472 +855,5 @@ function startSelect(selectOrderIndex) {
       break;
   }
 }
-
-
-
-function addOrder(item) {
-  if (item != 'cancel') {
-    if (orders.length < 8) {
-      orders.push(item);
-    } else {
-      console.log('栈满了');
-    }
-  } else {
-    if (orders.length <= 0) {
-      console.log('栈已经清空了，不能再删了');
-    } else {
-      orders.pop();
-      window.updateOrder();
-    }
-  }
-  // console.log(orders);
-  // 更新渲染
-  window.updateOrder();
-}
-
-function updateOrder() {
-  for (var i = 0; i <= orders.length; i++) {
-    switch (orders[i]) {
-      case 'walk':
-        ordersLi[i].className = 'order_walk';
-
-        break;
-      case 'left':
-        ordersLi[i].className = 'order_left';
-
-        break;
-      case 'right':
-        ordersLi[i].className = 'order_right';
-
-        break;
-      case 'loop':
-        ordersLi[i].className = 'order_loop';
-
-        break;
-      default:
-        if (ordersLi[i]) {
-          ordersLi[i].className = '';
-        } else {
-          //
-        }
-        break;
-    }
-  }
-}
-
-function addLoop(item) {
-  if (item != 'cancel') {
-    if (loops.length < 8) {
-      loops.push(item);
-    } else {
-      console.log('栈满了');
-    }
-  } else {
-    if (loops.length <= 0) {
-      console.log('栈已经清空了，不能再删了');
-    } else {
-      loops.pop();
-      window.updateLoop();
-    }
-  }
-  // console.log(loops);
-  // 更新渲染
-  window.updateLoop();
-}
-
-function updateLoop() {
-  for (var i = 0; i <= loops.length; i++) {
-    switch (loops[i]) {
-      case 'walk':
-        loopLi[i].className = 'loop_walk';
-
-        break;
-      case 'left':
-        loopLi[i].className = 'loop_left';
-
-        break;
-      case 'right':
-        loopLi[i].className = 'loop_right';
-
-        break;
-      case 'loop':
-        loopLi[i].className = 'loop_loop';
-
-        break;
-      default:
-        if (loopLi[i]) {
-          loopLi[i].className = '';
-        } else {
-          //
-        }
-        break;
-    }
-  }
-}
-
-function showPreview(selectOrderIndex) {
-  console.log(selectOrderIndex);
-  switch (selectOrderIndex) {
-    case 7:
-      break;
-    case 8:
-      break;
-    case 9:
-      break;
-    default:
-      break;
-  }
-} 
-
-function showSelect(selectOrderIndex) {
-  // console.log('点击了外部指令')
-  
-
-}
-
-function runLoop(loops){
-  console.log("查看栈中的情况",loops);
-  for(var i = 0; i < loops.length; i++){
-    switch(loops[i]){
-      case "walk":
-        window.runWalk()
-
-        break;
-      case "left":
-        window.runLeft()
-        break;
-      case "right":
-        window.runRight()
-        break;
-      case "loop":
-        window.runLoop()
-        break;
-      default:
-        break;
-    }
-  }
-}
-
-function walk(ele, target){
-  // target = parseInt(ip.style.left) + speed;
-  // animate(ip, target)
-  console.log("人物的方向", playerRota)
-
-}
-
-function animate(ele, target){
-  clearInterval(ele.timer)
-  var aniamteSpeed = 1;
-  ele.timer = setInterval(function () {
-    var val = target - parseInt(ele.style.left)
-    ele.style.left = parseInt(ele.style.left) + speed + "px";
-    if(val == 0){
-      ele.style.left = targer + "px";
-      clearInterval(ele.timer);
-    }
-  },10)
-}
-
-function play(){
-  console.log("即将执行命令框里的指令：",orders)
-  for(var i = 0; i < orders.length; i++) {
-    (function(i) {
-      setTimeout(function() {
-        switch(orders[i]){
-          case "walk":
-            window.runWalk(playerRota)
-
-            break;
-          case "left":
-            window.runLeft()
-
-            break;
-          case "right":
-            window.runRight()
-
-            break;
-          default:
-            break;
-        }
-        console.log("第"+(i+1)+"个命令后 人物的方向:",playerRota)
-      }, i * 600)
-    })(i);
-  }
-  // window.runStop()
-}
-
-function runRotation(){
-  switch(playerRota){
-    case "right":
-      coordinate.cy += 1;
-      break;
-    case "down":
-      coordinate.cx += 1;
-      break;
-    case "left":
-      coordinate.cy -= 1;
-      break;
-    case "up":
-      coordinate.cx -= 1;
-      break;
-    default:
-      break;
-  }
-}
-
-function runCoorPlayer(){
-  console.log('目前的方向是：',playerRota)
-  switch(playerRota){
-    case "left":
-      window.runGoLeft()
-      break;
-    case "right":
-      window.runGoRight()
-      break;
-    case "up":
-      window.runGoUp()
-      break;
-    case "down":
-        window.runGoDown()
-      break;
-    default:
-      break;
-  }
-}
-
-function getCoorInfo(item){
-  switch(item){
-    case 0:
-      console.log('前方的坐标是0，不能走')
-      break;
-    case 1:
-      window.runRotation()
-      // window.runGoRight()
-      window.runCoorPlayer()
-      break;
-    case 2:
-      console.log('前面的坐标是宝箱，即将进行碰撞检测')
-      window.runRotation()
-      // window.runGoRight()
-      window.runCoorPlayer()      
-      break;
-    case 3:
-      console.log('前面的坐标是 其他物品 ，即将进行碰撞检测')
-      window.runRotation()
-      // window.runGoRight()
-      window.runCoorPlayer()
-      break;
-    default:
-      break;
-  }
-}
-
-function runWalk(playerRota){
-  // console.log("向" + playerRota + '方向')
-  switch(playerRota){
-    case "right":
-      console.log("下个坐标：", map1info.gameMap[coordinate.cx][coordinate.cy+1])
-      if(coordinate.cx > 9){
-        console.log('超出边界')
-      } else {
-        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy+1])
-        // coordinate.cx += 1;
-        // window.runGoRight()
-      }
-      // i = 0;
-			// clearInterval(clc);
-			// clc = setInterval("window.runGoRight(i++);", 60);
-
-      break;
-    case "down":
-      // console.log("下个坐标：",map1info.gameMap[coordinate.cx+1][coordinate.cy])
-      if(coordinate.cy > 9){
-        console.log('超出边界')
-      
-      } else {
-        window.getCoorInfo(map1info.gameMap[coordinate.cx+1][coordinate.cy])
-        // coordinate.cy += 1;
-        // window.runGoDown()
-      }
-
-
-      break;
-    case "left":
-      // console.log("下个坐标：",map1info.gameMap[coordinate.cx][coordinate.cy-1])
-      if(coordinate.cx > 9){
-        console.log('超出边界')
-        
-      } else {
-        window.getCoorInfo(map1info.gameMap[coordinate.cx][coordinate.cy-1])
-        // coordinate.cx -= 1;
-        // window.runGoLeft()
-      }
-     
-
-      break;
-    case "up":
-      // console.log("下个坐标：",map1info.gameMap[coordinate.cx-1][coordinate.cy])
-      if(coordinate.cy > 9){
-        console.log('超出边界')
-
-      } else {
-        window.getCoorInfo(map1info.gameMap[coordinate.cx-1][coordinate.cy])
-        // coordinate.cy -= 1;
-        // window.runGoUp()
-      }
-
-
-      break;
-    default:
-      break;
-  }
-  console.log("移动后人物的坐标:", coordinate)
-  if(coordinate.cx == map1info.goldX && coordinate.cy == map1info.goldY){
-    console.log('到达终点')
-    setTimeout(() => {
-      goldBox.style.backgroundPosition = "-30px 0px"
-      game_result = true
-    }, 600);
-    setTimeout(() => {
-      window.gameOver()
-    }, 1300);
-  }
-}
-
-function runLeft(){
-  // 左转指令已修复， 函数中不要传值，每次都从 store 拿最新的
-  switch(playerRota){
-    case "right":
-      playerRota = "up";
-      
-      break;
-    case "down":
-      playerRota = "right";
-      
-      break;
-    case "up":
-      playerRota = "left";
-      
-      break;
-    case "left":
-      playerRota = "down"
-      
-      break;
-    default:
-      break;
-  }
-  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
-}
-
-function runRight(){
-  // 右转指令没有问题，已确认 20190316
-  switch(playerRota){
-    case "right":
-      playerRota = "down";
-
-      break;
-    case "down":
-      playerRota = "left";
-
-      break;
-    case "up":
-      playerRota = "right";
-
-      break;
-    case "left":
-      playerRota = "up";
-
-      break;
-    default:
-      break;
-  }
-  playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
-}
-
-function runLoop(){
-  console.log('执行循环')
-
-}
-
-function runStop(){
-  switch(playerFlag){
-    case "left":
-      playerImg.src = "./../assets/img/hero-left.png"
-
-      break;
-    case "right":
-      playerImg.src = "./../assets/img/hero-right.png"
-
-      break;
-    case "up":
-      playerImg.src = "./../assets/img/hero-up.png"
-
-      break;
-    case "down":
-      playerImg.src = "./../assets/img/hero-down.png"
-
-      break;
-    default:
-      break;
-  }
-  clearInterval(clc)
-}
-
-function runGoUp(){
-  // 向上走
-  // i = i % 4;
-  var name = "./../assets/img/hero-up.png";
-  playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) - 55 + 'px';
-  playerFlag = "up";
-
-  
-}
-
-function runGoRight(){
-  // 向右走
-  // i = i % 4;
-  var name = "./../assets/img/hero-right.png";
-  playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) + 50 +'px';
-  playerFlag = "right";
-
-}
-
-function runGoDown(){
-  // 向下走
-  // i = i % 4;
-  var name = "./../assets/img/hero-down.png";
-  playerImg.src = name;
-  playerImg.style.top = parseInt(playerImg.style.top) + 55 + 'px';
-  playerFlag = "down";
-
-}
-
-function runGoLeft(){
-  // 向左走
-  // i = i % 4;
-  var name = "./../assets/img/hero-left.png";
-  playerImg.src = name;
-  playerImg.style.left = parseInt(playerImg.style.left) - 50 + 'px';
-  playerFlag = "left";
-
-}
-
-
-
-
-
-
-/**
- * 动作缩略图
- */
-
-
-
-/**
- * 选项框
- */
-
 
  
