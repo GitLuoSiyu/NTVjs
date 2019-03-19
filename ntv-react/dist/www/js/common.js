@@ -182,31 +182,42 @@ function animate(ele, target){
 }
 
 function play(){
-  // console.log("即将执行命令框里的指令：",orders)
-  for(var i = 0; i < orders.length; i++) {
-    (function(i) {
-      setTimeout(function() {
-        switch(orders[i]){
-          case "walk":
-            window.runWalk(playerRota)
-            break;
-          case "left":
-            window.runLeft()
-            break;
-          case "right":
-            window.runRight()
-            break;
-          case "loop":
-            window.runLoop()
-            break;
-          default:
-            break;
-        }
-        // console.log("第"+(i+1)+"个命令后 人物的方向:",playerRota)
-      }, i * 600)
-    })(i);
+  // 执行命令，判断开关阀门
+  if(playThrottle === false){
+    playThrottle = true;
+    document.querySelector("#play img").src = "./../assets/img/btn-play-pause.png"
+    // console.log('阀门是开着的')
+    for(var i = 0; i < orders.length; i++) {
+      (function(i) {
+        setTimeout(function() {
+          switch(orders[i]){
+            case "walk":
+              window.runWalk(playerRota)
+              break;
+            case "left":
+              window.runLeft()
+              break;
+            case "right":
+              window.runRight()
+              break;
+            case "loop":
+              window.runLoop()
+              break;
+            default:
+              break;
+          }
+          // console.log("第"+(i+1)+"个命令后 人物的方向:",playerRota)
+        }, i * 600)
+      })(i);
+    }
+    // 开关阀门
+    setTimeout(function(){
+      playThrottle = false;
+      document.querySelector("#play img").src = "./../assets/img/btn-play-back.png"
+    }, i * 600)
+  } else {
+    console.log('命令正在执行中，不能再次点击')
   }
-  // window.runStop()
 }
 
 function runLoop(){
@@ -225,7 +236,12 @@ function runLoop(){
             window.runRight()
             break;
           case "loop":
-            window.runLoop()
+            if(orderThrottle < 8){
+              orderThrottle++;
+              window.runLoop()
+            } else {
+              // not to do
+            }
             break;
           default:
             break;
@@ -233,6 +249,20 @@ function runLoop(){
       }, i * 600)
     })(i);
   }
+}
+
+function gameThrottle(){
+  // 一次命令执行完后的判断
+  console.log('命令执行完，是否完成任务：',game_result)
+  if(game_result === false){
+    console.log('没完成，点击按钮重新开始')
+    orders = []
+    playerImg.style.top = '58px'
+    playerImg.style.left = '58px'
+  } else {
+    console.log('任务完成，不进行操作')
+  }
+
 }
 
 function runRotation(){
@@ -338,9 +368,9 @@ function runWalk(playerRota){
     default:
       break;
   }
-  console.log("运动后的坐标(横y竖x):\n", coordinate)
+  // console.log("运动后的坐标(横y竖x):\n", coordinate)
   if(coordinate.cx == map1info.goldX && coordinate.cy == map1info.goldY){
-    console.log('到达终点，游戏即将结束')
+    // console.log('到达终点，游戏即将结束')
     setTimeout(() => {
       goldBox.style.backgroundPosition = "-30px 0px"
       game_result = true
