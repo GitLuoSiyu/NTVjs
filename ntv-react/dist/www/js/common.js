@@ -17,6 +17,8 @@ var coordinate = {cx, cy};                                            // 使用D
 var over_focus = "next";                                              // 游戏结束，默认选中的是 next
 var i = 0;                                                            // 人物图片切换的 初始
 var clc = null;                                                       // 人物行走定时
+var orderThrottle = 0;                                                // 命令栈的节流阀
+var playThrottle = false;                                             // 运行按钮的节流阀
 
 var overSelect = document.querySelector('#over_select');              // 游戏结束时的 底部选择框
 var ordersLi = document.querySelectorAll('#orders li');               // 命令栈里的 每个子 order
@@ -52,10 +54,8 @@ function gameOver() {
     goldBox.style.visibility = "hidden"
     playerImg.style.visibility = "hidden"
     document.querySelector('#mask').style.display = 'block';
-
     // 更新 store
     var getPlayerInfo = window.localStorage.getItem("playerInfo")
-
     window.overFocus();
   }
 }
@@ -125,8 +125,6 @@ function addLoop(item) {
       window.updateLoop();
     }
   }
-  // console.log(loops);
-  // 更新渲染
   window.updateLoop();
 }
 
@@ -164,28 +162,6 @@ function showSelect(selectOrderIndex) {
   // console.log('点击了外部指令')
 }
 
-function runLoop(loops){
-  console.log("查看栈中的情况",loops);
-  for(var i = 0; i < loops.length; i++){
-    switch(loops[i]){
-      case "walk":
-        window.runWalk()
-        break;
-      case "left":
-        window.runLeft()
-        break;
-      case "right":
-        window.runRight()
-        break;
-      case "loop":
-        window.runLoop()
-        break;
-      default:
-        break;
-    }
-  }
-}
-
 function walk(ele, target){
   // target = parseInt(ip.style.left) + speed;
   // animate(ip, target)
@@ -199,7 +175,7 @@ function animate(ele, target){
     var val = target - parseInt(ele.style.left)
     ele.style.left = parseInt(ele.style.left) + speed + "px";
     if(val == 0){
-      ele.style.left = targer + "px";
+      ele.style.left = target + "px";
       clearInterval(ele.timer);
     }
   },10)
@@ -220,6 +196,9 @@ function play(){
           case "right":
             window.runRight()
             break;
+          case "loop":
+            window.runLoop()
+            break;
           default:
             break;
         }
@@ -228,6 +207,32 @@ function play(){
     })(i);
   }
   // window.runStop()
+}
+
+function runLoop(){
+  // console.log("查看循环中的情况",loops);
+  for(var i = 0; i < loops.length; i++){
+    (function(i) {
+      setTimeout(function() {
+        switch(loops[i]){
+          case "walk":
+            window.runWalk(playerRota)
+            break;
+          case "left":
+            window.runLeft()
+            break;
+          case "right":
+            window.runRight()
+            break;
+          case "loop":
+            window.runLoop()
+            break;
+          default:
+            break;
+        }
+      }, i * 600)
+    })(i);
+  }
 }
 
 function runRotation(){
@@ -396,11 +401,6 @@ function runRight(){
   playerImg.src = "./../assets/img/hero-" + playerRota + "." + "png";
 }
 
-function runLoop(){
-  console.log('执行循环')
-
-}
-
 function runStop(){
   switch(playerFlag){
     case "left":
@@ -433,7 +433,6 @@ function runGoUp(){
   playerImg.style.top = parseInt(playerImg.style.top) - 55 + 'px';
   playerFlag = "up";
 
-  
 }
 
 function runGoRight(){
@@ -465,11 +464,6 @@ function runGoLeft(){
   playerFlag = "left";
 
 }
-
-
-
-
-
 
 /**
  * 动作缩略图
