@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>map2</title>
+  <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/common.css">
+  <script src="./../lib/jquery.js"></script>
+  <script src="./../lib/phaser.min.js"></script>
+  <script src="./../lib/phaser-debug.js"></script>
+</head>
+<body>
+  <div id="backgroud">
+    <div id="canvas"></div>
+
+    <div id="game_tip">
+      <div id="map_number"><img src="./../assets/img/maptitle/tipMap2.png" alt="" /></div>
+      <div id="map_title">关卡二的提示语</div>
+    </div>
+
+    <div id="order_select"></div>
+    <div id="right_orders">
+      <ul id="orders">
+        <li id="order_0" class="dir "></li>
+        <li id="order_1" class="dir "></li>
+        <li id="order_2" class="dir "></li>
+        <li id="order_3" class="dir "></li>
+        <li id="order_4" class="dir "></li>
+        <li id="order_5" class="dir "></li>
+        <li id="order_6" class="dir "></li>
+        <li id="order_7" class="dir "></li>
+      </ul>
+    </div>
+
+    <span id="btn_select"></span>
+    <div id="btn_order">
+      <div id="walk"><img src="" /></div>
+      <div id="left"><img src="" /></div>
+      <div id="right"><img src="" /></div>
+      <div id="loop"><img src="" /></div>
+      <div id="cancel"><img src="" /></div>
+    </div>
+
+    <div id="preview">
+      <div id="order_view_walk" class=""></div>
+      <div id="order_view_left" class=""></div>
+      <div id="order_view_right" class=""></div>
+    </div>
+
+    <div id="xunhuan">
+      <ul id="xun_orders">
+        <li id="xun_0" class="xun "></li>
+        <li id="xun_1" class="xun "></li>
+        <li id="xun_2" class="xun "></li>
+        <li id="xun_3" class="xun "></li>
+        <li id="xun_4" class="xun "></li>
+        <li id="xun_5" class="xun "></li>
+        <li id="xun_6" class="xun "></li>
+        <li id="xun_7" class="xun "></li>
+      </ul>
+    </div>
+
+    <span id="playFocus"></span>
+    <span id="footFocus"></span>
+    <div id="footer">
+      <div id="play"><img src="./../assets/img/btn-play.png" alt="" /></div>
+      <div id="reset"><img src="./../assets/img/reset.png" alt="" /></div>
+      <div id="toback"><img src="./../assets//img/toback.png" alt="" /></div>
+    </div>
+
+    <div id="mask">
+      <div id="over_select"></div>
+      <!-- reset left 51% -->
+      <div id="game_over">
+        <ul id="star">
+          <li id="star_item1"><img src="" alt=""/></li>
+          <li id="star_item2"><img src="" alt=""/></li>
+          <li id="star_item3"><img src="" alt=""/></li>
+        </ul>
+        <div id="over_btn">
+          <div id="next_game"><img src="./../assets/img/nextGame.png" alt="" /></div>
+          <div id="reset_game"><img src="./../assets/img/resetGame.png" alt="" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./../js/store.js"></script>
+  <script src="./../js/common.js"></script>
+  <script>
+    // Phaser Canvas 操作
+    window.onload = function(){
+        this.startDom();
+        var game;
+        game = new Phaser.Game(420, 360, Phaser.CANVAS, "canvas");
+        // 适配暂时没做
+        game.state.add('boot', Boot);
+        game.state.start('boot');
+    }
+
+    function Boot(game){
+      "use strict"
+      var gameMap;
+      var player;
+      var cursors;
+      var blocks;
+      var gameResult = false;
+      var box;
+      var collect = [];
+      var playerDirection = "right";  // 人物初始方向
+
+      this.preload = function(){
+        game.load.image('gameCanvas', './../assets/img/maps/map01.png');
+        game.load.spritesheet('player', './../assets/img/players.png', 42, 48);
+        game.load.spritesheet('box', './../assets/img/block.png', 30, 30)
+      }
+      this.create = function(){
+        game.physics.startSystem(Phaser.ARCADE);
+        gameMap = game.add.image(0,0, 'gameCanvas');
+        box = game.add.sprite(0,0,'box');
+        box.x = 90;
+        box.y = 40;
+			  game.physics.arcade.enable(box);
+        player = game.add.sprite(42,16, 'player');
+        player.frame = 0;
+        game.physics.arcade.enable(player);
+        game.physics.arcade.enable(player);
+        player.body.collideWorldBounds=true;
+        player.body.bounce.y = 0
+        player.body.gravity.y = 0
+        cursors = game.input.keyboard.createCursorKeys();
+      }
+      this.direction = function(playerDirection){
+        // 确认 人物方向
+        switch(playerDirection){
+          case "left":
+
+              break;
+          case "up":
+
+              break;
+          case "right":
+
+              break;
+          case "down":
+
+              break;
+          default:
+              break;
+        }
+      }
+      this.updateMap = function(){
+        // 根据人物方向的变化， 更新地图二维数组的判断
+
+      }
+      this.runLoop = function(){
+        // 过滤 loop 框内的命令，并另存
+
+      }
+      this.runOrders = function(){
+        // 读取命令栈的命令
+
+      }
+      this.collide = function(){
+        // 猴子 与 物体的碰撞检测
+
+      }
+      this.bounce = function(){
+        // 刚体碰撞检测，检查 猴子 与 路块的检测
+
+      }
+      this.gameResult = function(){
+        // 游戏结果的判断
+
+      }
+      this.update = function(){
+        game.physics.arcade.overlap(player,box,function(){
+          gameResult = true
+          game_result = true
+          box.frame = 1;
+          setTimeout(function(){
+            box.kill()
+          }, 800)
+          setTimeout(function(){
+            window.gameOver();
+          },2000)
+			  });
+
+        if (cursors.left.isDown) {
+          player.body.velocity.x = -150;
+          // window.showSelect()
+        } else if (cursors.right.isDown) {
+          player.body.velocity.x = 150;
+        } else {
+          player.body.velocity.x = 0;
+          player.frame = 0;
+        }
+      }
+    }
+    
+  </script>
+</body>
+</html>
