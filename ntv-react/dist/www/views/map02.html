@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="backgroud">
-    <div id="dom_map" style="background: url(./../assets//img//maps/map001.png) no-repeat center;">
+    <div id="dom_map" style="background: url(./../assets//img//maps/map01.png) no-repeat center;">
       <div id="gold_box"></div>
       <img id="hero" src="./../assets/img/hero-right.png" />
     </div>
@@ -91,6 +91,13 @@
   </div>
   <script src="./../lib/jquery.js"></script>
   <script src="./../js/store.js"></script>
+  <script>
+    // var cx = map2info.coorX;                                              // 原始坐标 cx 由地图json 传递
+    // var cy = map2info.coorY;                                              // 原始坐标 cy 由地图json 传递
+    // var goldBox = document.querySelector("#gold_box");                    // 宝箱
+    // goldBox.style.top = map2info.goldTop;                                 // 宝箱的 top 值
+    // goldBox.style.left = map2info.goldLeft;                               // 宝箱的 left 值
+  </script>
   <script src="./../js/common.js"></script>
   <script>
     window.onload = function(){
@@ -100,6 +107,8 @@
         playerImg.style.left = '58px'
 
     }
+
+    
 
   </script>
 </body>
