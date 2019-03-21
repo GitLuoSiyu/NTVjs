@@ -93,23 +93,41 @@
         var e = event || window.event || arguments.callee.caller.arguments[0];
         switch(e.keyCode){
           case 37:
-            console.log('点击了 left ')
-
+            if (videoIndex == 1) {
+              videoIndex = 6;
+            } else {
+              videoIndex--;
+            }
+            window.keyFocus(videoIndex);
             break;
           case 38:
-            console.log('点击了 up ')
-
+            if (videoIndex < 7){
+              videoIndex = 8;
+            } else if (videoIndex > 8){
+              videoIndex = 9;
+            } else {
+              videoIndex++;
+            }
+            window.keyFocus(videoIndex);
             break;
           case 39:
-            console.log('点击了 right ')
-
+            if (videoIndex == 6) {
+              videoIndex = 1;
+            } else {
+              videoIndex++;
+            }
+            window.keyFocus(videoIndex);
             break;
           case 40:
-            console.log('点击了 down ')
-
+            if (videoIndex < 9){
+              videoIndex = 1;
+            } else {
+              videoIndex--;
+            }
+            window.keyFocus(videoIndex);
             break;
           case 13:
-            console.log('点击了 enter ')
+            window.enterKey()
 
             break;
           default:
@@ -123,33 +141,58 @@
 
   function keyFocus(videoIndex){
     // 下标变化，手指变化
+    // console.log(videoIndex)
     var go = document.querySelector("#video_focus");
     switch(videoIndex){
       case 1:
+        console.log("选中的是：视频01")
+        go.style.left = "240px";
+        go.style.top = "600px";
 
         break;
       case 2:
+        console.log("选中的是：视频02")
+        go.style.left = "450px";
+        go.style.top = "600px";
 
         break;
       case 3:
+        console.log("选中的是：视频03")
+        go.style.left = "664px";
+        go.style.top = "600px";
 
         break;
       case 4:
+        console.log("选中的是：视频04")
+        go.style.left = "874px";
+        go.style.top = "600px";
 
         break;
       case 5:
+        console.log("选中的是：视频05")
+        go.style.left = "1086px";
+        go.style.top = "600px";
 
         break;
       case 6:
+        console.log("选中的是：视频06")
+        go.style.left = "1300px";
+        go.style.top = "600px";
 
         break;
       case 7:
         // 7 空缺，不用
         break;
       case 8:
+        console.log("选中的是：当前MP4")
+        go.style.left = "";
+        go.style.top = "";
 
         break;
       case 9:
+        console.log("选中的是：返回按钮")
+        go.style.left = "";
+        go.style.top = "";
 
         break;
       default:
@@ -159,6 +202,7 @@
 
   function enterKey(){
     // 按下确定键
+    console.log(videoIndex)
     switch(videoIndex){
       case 1:
 
@@ -182,6 +226,7 @@
         // 7 空缺，不用
         break;
       case 8:
+        quanFlag = true;
 
         break;
       case 9:
