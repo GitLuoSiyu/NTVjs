@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import keydown from 'react-keydown';
 
 
-export default class Menu extends Component {
+export default class Shop extends Component {
   constructor(){
     super() 
 
@@ -29,7 +28,7 @@ export default class Menu extends Component {
 
     return (
       <div>
-        <p>Hello World</p>
+
       </div>
     )
   }

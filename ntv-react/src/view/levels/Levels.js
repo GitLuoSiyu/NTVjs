@@ -21,10 +21,10 @@ export default class Levels extends Component {
   }
 
   redner() {
-    const {
-      levelState
-    } = this.state
-    const { currentGameLevel } = levelState;
+    // const {
+    //   levelState
+    // } = this.state
+    // const { currentGameLevel } = levelState;
 
     return (
       <div>
