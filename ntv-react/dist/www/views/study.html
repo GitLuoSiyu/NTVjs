@@ -29,7 +29,7 @@
     #video_list #video_item_5{background: url(./../assets/img/video_05.png) no-repeat center;}
     #video_list #video_item_6{background: url(./../assets/img/video_06.png) no-repeat center;}
     #studyToBack{display: inline-block; position: absolute; left: 10px; top: 10px; width: 100px; height: 70px; background: url(./../assets/img/study_toback.png) no-repeat center; z-index: 10;}
-    #video_focus{position: absolute; width: 80px; height: 80px; left: 240px; top: 600px; background: url(./../assets/img/select.png) no-repeat center; background-size: 100%;}
+    #video_focus{z-index: 112; position: absolute; width: 80px; height: 80px; left: 240px; top: 600px; background: url(./../assets/img/select.png) no-repeat center; background-size: 100%;}
   </style>
 </head>
 <body>
@@ -73,6 +73,9 @@
         <!-- 视频6 -->
       </ul>
       <div id="video_focus"></div>
+      <div id="mask_box">
+        <!-- 弹框 -->
+      </div>
   </div>
 </body>
 <script src="./../js/video.js"></script>
@@ -80,10 +83,14 @@
   // 视频操作
   var quanFlag = false;  // false 未全屏  true 是全屏
   var videoIndex = 1;    // 默认下标1
+  var bofang = false;    // 点击了暂停播放？
   // 操作要求：指针跳转选择
   window.onload = function(){
     // 键盘事件
     window.keyboard();
+    window.hideTopBottomCtrlLi()
+
+
   }
 
   function keyboard(){
@@ -93,7 +100,7 @@
         var e = event || window.event || arguments.callee.caller.arguments[0];
         switch(e.keyCode){
           case 37:
-            if (videoIndex == 1) {
+            if (videoIndex <= 1) {
               videoIndex = 6;
             } else {
               videoIndex--;
@@ -111,7 +118,7 @@
             window.keyFocus(videoIndex);
             break;
           case 39:
-            if (videoIndex == 6) {
+            if (videoIndex >= 6) {
               videoIndex = 1;
             } else {
               videoIndex++;
@@ -135,7 +142,7 @@
         }
       };
     } else {
-
+      // 将键盘事件释放，遥控器的方向键 控制 视频的播放进度
     }
   }
 
@@ -146,36 +153,42 @@
     switch(videoIndex){
       case 1:
         console.log("选中的是：视频01")
+        // quanFlag = false;
         go.style.left = "240px";
         go.style.top = "600px";
 
         break;
       case 2:
         console.log("选中的是：视频02")
+        // quanFlag = false;
         go.style.left = "450px";
         go.style.top = "600px";
 
         break;
       case 3:
         console.log("选中的是：视频03")
+        // quanFlag = false;
         go.style.left = "664px";
         go.style.top = "600px";
 
         break;
       case 4:
         console.log("选中的是：视频04")
+        // quanFlag = false;
         go.style.left = "874px";
         go.style.top = "600px";
 
         break;
       case 5:
         console.log("选中的是：视频05")
+        // quanFlag = false;
         go.style.left = "1086px";
         go.style.top = "600px";
 
         break;
       case 6:
         console.log("选中的是：视频06")
+        // quanFlag = false;
         go.style.left = "1300px";
         go.style.top = "600px";
 
@@ -184,15 +197,17 @@
         // 7 空缺，不用
         break;
       case 8:
-        console.log("选中的是：当前MP4")
-        go.style.left = "";
-        go.style.top = "";
+        console.log("选中的是：当前MP4,即可失焦",)
+        quanFlag = true;
+        go.style.left = "-200px";
+        go.style.top = "20px";
 
         break;
       case 9:
         console.log("选中的是：返回按钮")
-        go.style.left = "";
-        go.style.top = "";
+        // quanFlag = false;
+        go.style.left = "40px";
+        go.style.top = "20px";
 
         break;
       default:
@@ -203,39 +218,56 @@
   function enterKey(){
     // 按下确定键
     console.log(videoIndex)
-    switch(videoIndex){
-      case 1:
+    // if(quanFlag === false){
+        switch(videoIndex){
+        case 1:
+          console.log(video.src)
+          video.src = "./../assets/media/lesson1.mp4"
 
-        break;
-      case 2:
+          break;
+        case 2:
+          video.src = "./../assets/media/lesson2.mp4"
 
-        break;
-      case 3:
+          break;
+        case 3:
+          video.src = "./../assets/media/lesson3.mp4"
 
-        break;
-      case 4:
+          break;
+        case 4:
+          video.src = "./../assets/media/lesson4.mp4"
 
-        break;
-      case 5:
+          break;
+        case 5:
+          video.src = "./../assets/media/lesson5.mp4"
 
-        break;
-      case 6:
+          break;
+        case 6:
+          video.src = "./../assets/media/lesson6.mp4"
 
-        break;
-      case 7:
-        // 7 空缺，不用
-        break;
-      case 8:
-        quanFlag = true;
+          break;
+        case 7:
+          // 7 空缺，不用
+          break;
+        case 8:
+          window.setFullScreen()
 
-        break;
-      case 9:
+          break;
+        case 9:
+          console.log('点击了返回')
+          window.history.go(-1)
 
-        break;
-      default:
-        break;
-    }
+          break;
+        default:
+          break;
+      }
+    // } else if(quanFlag === false) {
+    //   console.log('再次点击暂停播放')
+    //   window.playpause()
+    // } else {
+
+    // }
   }
+
 </script>
 <script>
   // window.onload = function () {
@@ -247,37 +279,21 @@
     nextVideoExtend: function () {
       // alert('您点击了下一页')
     },
-    showNext: true,
+    showNext: false,
     width: '580px',
     height: '292px',
     src: './../assets/media/lesson1.mp4',
     autoplay: true,
     setVideoDefinition: function (type, e, current) {
-      if (type === '0') {
-        alert('你点击了标清')
-        // video.setVideoInfo('這是標清','这里填写视频的标清地址',current)
-      }
-      if (type === '1') {
-        alert('你点击了标清')
-        // video.setVideoInfo('這是標清','这里填写视频的高清地址',current)
-      }
-      if (type === '2') {
-        alert('你点击了标清')
-        // video.setVideoInfo('這是標清','这里填写视频的超清地址',current)
-      }
       video.showLoading(false)
-      // setTimeout(function () {
-      // 	video.videoEle.currentTime = current
-      // 	video.videoPlay()
-      // 	video.showLoading(false)
-      // }, 3000)
     },
   })
 
   // 全屏
   function setFullScreen () {
-    console.log('点击了全屏')
+    console.log('点击了全屏',quanFlag)
     video.launchFullScreen(videoWrap)
+    quanFlag = true;
 
   }
 
