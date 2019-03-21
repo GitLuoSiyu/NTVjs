@@ -15,7 +15,7 @@
 		.title{font: 24px/1.5 weight;color: #fff;text-align: center;margin: 20px 0;}
 		.centerInfo{position: absolute;top: 45%;left: 50%;transform: translate(-50%,-50%);}
 		.getFullScreen{position: absolute;bottom:100px;right: 100px;z-index: 1111;}
-		.ctrl-c{width: 500px;height: auto;margin: 20px auto;}
+		.ctrl-c{width: 500px;height: auto;margin: 20px auto; margin-top: 130px;}
 		.btn{padding: 6px 10px;background: #5C96D8;margin: 5px;color: #fff;cursor: pointer;border-radius: 4px;display: inline-block;}
 		#testVideo{width: 520px;height: auto;margin: 0 auto;outline:2px solid #ccc;}
 		body,html{font-size: 16px;}
@@ -25,7 +25,8 @@
 <body>
   <div id="study_bg" style="background:url(./../assets/img/studyBg.png) no-repeat center; width: 1280px; height: 720px;">
     <div class="centerInfo">
-        <h3 class="title">阿拉佳低配版视频播放器</h3>
+        <div id="studyToBack"></div>
+        <!-- <h3 class="title">阿拉佳低配版视频播放器</h3> -->
         <div id="testVideo"></div>
         <div class="ctrl-c" style="user-select:none">
           <span class="btn" style="background: #B42828" onClick="setFullScreen()">点击全屏</span>
@@ -88,62 +89,91 @@
 
   // 全屏
   function setFullScreen () {
+    console.log('点击了全屏')
     video.launchFullScreen(videoWrap)
+
   }
 
   // 播放
   function play () {
+    // 单机一次屏幕 播放
+    console.log('点击播放')
     video.videoPlay()
+
   }
 
   // 暂停
   function pause () {
+    console.log('点击了暂停')
     video.videoPause()
+
   }
 
   // 播放暂停
   function playpause () {
+    console.log('单击播放和暂停')
     video.videoPlayPause()
+
   }
 
   function setVolume (v) {
+    console.log('增大音量100')
     video.updateVolume(v)
+
   }
 
   function setBackRate (index) {
+    console.log('降低音量30')
     video.setPlayBackRate(index)
+
   }
 
   function setVideoForward () {
+    console.log("快进")
     video.videoForward(10)
+
   }
 
   function setVideoRewind () {
+    console.log('快退')
     video.videoRewind(10)
+
   }
 
   function showLoading () {
+    console.log('显示进度信息')
     video.showLoading(true, '视频清晰度切换中，请稍等')
+
   }
 
   function showTopBottomCtrlNotClose () {
+    console.log('显示上下菜单并且不关闭')
     video.showTopBottomCtrl()
+
   }
 
   function hideTopBottomCtrlLi () {
+    console.log('关闭上下黑边菜单')
     video.hideTopBottomCtrl(true)
+
   }
 
   function showTopBottomCtrl () {
+    console.log('显示菜单但会自动关闭')
     video.showTopBottomCtrl(true)
+
   }
 
   function hideTopBottomCtrl () {
+    console.log('固定时候后自动关闭菜单')
     video.hideTopBottomCtrl()
+
   }
 
   function setVideoSize () {
+    console.log('设置宽高720,480')
     video.updateVideoSize(720,480)
+
   }
 </script>
 </html>
