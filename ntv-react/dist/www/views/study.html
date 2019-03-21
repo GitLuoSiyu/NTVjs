@@ -13,22 +13,33 @@
     body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
       width: 100%;height: 100%;background-color: #171717;}
 		.title{font: 24px/1.5 weight;color: #fff;text-align: center;margin: 20px 0;}
-		.centerInfo{position: absolute;top: 45%;left: 50%;transform: translate(-50%,-50%);}
+		.centerInfo{position: absolute;top: 30%;left: 40%;transform: translate(-50%,-50%);}
 		.getFullScreen{position: absolute;bottom:100px;right: 100px;z-index: 1111;}
 		.ctrl-c{width: 500px;height: auto;margin: 20px auto; margin-top: 130px;}
 		.btn{padding: 6px 10px;background: #5C96D8;margin: 5px;color: #fff;cursor: pointer;border-radius: 4px;display: inline-block;}
 		#testVideo{width: 520px;height: auto;margin: 0 auto;outline:2px solid #ccc;}
 		body,html{font-size: 16px;}
-		.btn{font-size: 1rem;background: rgba(0,0,0,0.3)!important;}
+    .btn{font-size: 1rem;background: rgba(0,0,0,0.3)!important;}
+    #video_list{width: 100%; height: 100px; position: relative; left: 8%; top: 580px; margin: 0 auto; text-align: center;}
+    #video_list li{ float: left; margin: 0 16px; width: 180px; height: 100px;}
+    #video_list #video_item_1{background: url(./../assets/img/video_01.png) no-repeat center;}
+    #video_list #video_item_2{background: url(./../assets/img/video_02.png) no-repeat center;}
+    #video_list #video_item_3{background: url(./../assets/img/video_03.png) no-repeat center;}
+    #video_list #video_item_4{background: url(./../assets/img/video_04.png) no-repeat center;}
+    #video_list #video_item_5{background: url(./../assets/img/video_05.png) no-repeat center;}
+    #video_list #video_item_6{background: url(./../assets/img/video_06.png) no-repeat center;}
+    #studyToBack{display: inline-block; position: absolute; left: 10px; top: 10px; width: 100px; height: 70px; background: url(./../assets/img/study_toback.png) no-repeat center; z-index: 10;}
+    #video_focus{position: absolute; width: 80px; height: 80px; left: 240px; top: 600px; background: url(./../assets/img/select.png) no-repeat center; background-size: 100%;}
   </style>
 </head>
 <body>
-  <div id="study_bg" style="background:url(./../assets/img/studyBg.png) no-repeat center; width: 1280px; height: 720px;">
+  <div id="study_bg" style="background:url(./../assets/img/studyBg.png) no-repeat center; width: 100%; height: 100%; background-size: 100%;">
+    <div id="studyToBack"></div>
     <div class="centerInfo">
-        <div id="studyToBack"></div>
         <!-- <h3 class="title">阿拉佳低配版视频播放器</h3> -->
         <div id="testVideo"></div>
-        <div class="ctrl-c" style="user-select:none">
+        <!-- 视频区 -->
+        <!-- <div class="ctrl-c" style="user-select:none">
           <span class="btn" style="background: #B42828" onClick="setFullScreen()">点击全屏</span>
           <span class="btn" style="background: #95487B" onClick="play()">播放 space</span>
           <span class="btn" style="background: #4D5DA6" onClick="pause()">暂停 space</span>
@@ -45,11 +56,31 @@
           <span class="btn" style="background: #4F1B60" onClick="showTopBottomCtrl()">显示菜单自动关闭</span>
           <span class="btn" style="background: #4F1B60" onClick="hideTopBottomCtrl()">固定时间后自动关闭</span>
           <span class="btn" style="background: #4F1B60" onClick="setVideoSize()">设置宽720 高480</span>
-        </div>
+        </div> -->
       </div>
+      <ul id="video_list">
+        <li id="video_item_1" class="video_item"></li>
+        <!-- 视频1 -->
+        <li id="video_item_2" class="video_item"></li>
+        <!-- 视频2 -->
+        <li id="video_item_3" class="video_item"></li>
+        <!-- 视频3 -->
+        <li id="video_item_4" class="video_item"></li>
+        <!-- 视频4 -->
+        <li id="video_item_5" class="video_item"></li>
+        <!-- 视频5 -->
+        <li id="video_item_6" class="video_item"></li>
+        <!-- 视频6 -->
+      </ul>
+      <div id="video_focus"></div>
   </div>
 </body>
 <script src="./../js/video.js"></script>
+<script>
+  // 视频操作
+  // 操作要求：指针跳转选择，
+
+</script>
 <script>
   // window.onload = function () {
   var videoWrap = document.getElementById('testVideo')

@@ -1,5 +1,3 @@
-/* Dvideo.js */
-/* version: 1.0 */
 (function (window, document) {
 	var Dvideo = function (options) {
 		// 判断是否是new Dvideo 的  不是的话 帮他new一下
@@ -9,10 +7,10 @@
 			ele: '',
 
 			// 地址
-			src: 'http://oxyi0vk1f.bkt.clouddn.com/evn4.mp4',
+			src: '',
 			
 			// 显示的名称
-			title: '这是一个视频标题这是一个视频标题这是一个视频标题这是一个视频标题',
+			title: '可以在左上角显示视频标题，比如阿拉佳教学视频，建议不写',
 			
 			// 宽度
 			width: '420px',
