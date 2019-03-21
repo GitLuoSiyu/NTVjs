@@ -78,8 +78,119 @@
 <script src="./../js/video.js"></script>
 <script>
   // 视频操作
-  // 操作要求：指针跳转选择，
+  var quanFlag = false;  // false 未全屏  true 是全屏
+  var videoIndex = 1;    // 默认下标1
+  // 操作要求：指针跳转选择
+  window.onload = function(){
+    // 键盘事件
+    window.keyboard();
+  }
 
+  function keyboard(){
+    // console.log(quanFlag)
+    if(quanFlag === false) {
+      document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        switch(e.keyCode){
+          case 37:
+            console.log('点击了 left ')
+
+            break;
+          case 38:
+            console.log('点击了 up ')
+
+            break;
+          case 39:
+            console.log('点击了 right ')
+
+            break;
+          case 40:
+            console.log('点击了 down ')
+
+            break;
+          case 13:
+            console.log('点击了 enter ')
+
+            break;
+          default:
+            break;
+        }
+      };
+    } else {
+
+    }
+  }
+
+  function keyFocus(videoIndex){
+    // 下标变化，手指变化
+    var go = document.querySelector("#video_focus");
+    switch(videoIndex){
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
+        break;
+      case 6:
+
+        break;
+      case 7:
+        // 7 空缺，不用
+        break;
+      case 8:
+
+        break;
+      case 9:
+
+        break;
+      default:
+        break;
+    }
+  }
+
+  function enterKey(){
+    // 按下确定键
+    switch(videoIndex){
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
+        break;
+      case 6:
+
+        break;
+      case 7:
+        // 7 空缺，不用
+        break;
+      case 8:
+
+        break;
+      case 9:
+
+        break;
+      default:
+        break;
+    }
+  }
 </script>
 <script>
   // window.onload = function () {
@@ -89,7 +200,7 @@
     ele: '#testVideo',
     title: '阿拉佳教学视频',
     nextVideoExtend: function () {
-      alert('您点击了下一页')
+      // alert('您点击了下一页')
     },
     showNext: true,
     width: '580px',
