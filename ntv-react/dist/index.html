@@ -10,8 +10,11 @@
   <script src="./www/lib/jquery.js"></script>
   <script src="./www/js/store.js"></script>
   <style>
+    body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+      width: 100%;height: 100%;background-color: #171717;}
     #game{background: url(./www/assets/img/worldBg.png) no-repeat; background-size: cover;
-      width: 1280px; height: 720px;
+      /* width: 1280px; height: 720px; */
+      width: 100%; height: 100%; background-size: 100% 100%;
       position: relative;
     }
     #menu_maps li{display: inline-block; width: 200px; height: 200px;position: absolute;cursor: pointer;}
@@ -55,12 +58,12 @@
                 break;
               case 2:
                 setTimeout(() => {
-                  self.location.href = "./www/views/map02";
+                  self.location.href = "./www/views/dom";
                 }, 1000)
                 break;
               case 3:
                 setTimeout(() => {
-                  self.location.href = "./www/views/dom";
+                  self.location.href = "./www/views/levels";
                 }, 1000)
                 break;
               case 4:
