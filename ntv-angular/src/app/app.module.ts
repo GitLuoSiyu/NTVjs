@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 // 装饰器，接收一个元数据对，告诉Angular如何编译和启动应用
 
 @NgModule({
@@ -20,7 +21,7 @@ import { LoginComponent } from './components/login/login.component';
     AppComponent, 
     HomeComponent, 
     BlogsComponent, 
-    LoginComponent
+    LoginComponent, RegisterComponent
   ],
   imports: [         /* 配置当前模块运行依赖的其他模块 */
     BrowserModule,
