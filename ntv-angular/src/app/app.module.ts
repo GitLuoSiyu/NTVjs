@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TopNavComponent } from './components/top-nav/top-nav.component';
 // 装饰器，接收一个元数据对，告诉Angular如何编译和启动应用
 
 @NgModule({
@@ -23,7 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent, 
     HomeComponent, 
     BlogsComponent, 
-    LoginComponent, RegisterComponent, HeaderComponent, FooterComponent
+    LoginComponent, RegisterComponent, HeaderComponent, FooterComponent, TopNavComponent
   ],
   imports: [         /* 配置当前模块运行依赖的其他模块 */
     BrowserModule,
