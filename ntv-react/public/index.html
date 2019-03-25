@@ -3,51 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>NTV-React</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <!-- <script src="https://gist.githubusercontent.com/eirikbacker/2864711/raw/dcc32b15ea79f8f364ca1707f81ec74a15fa25db/addEventListener-polyfill.js"></script> -->
-    <script>
-      //addEventListener polyfill 1.0 / Eirik Backer / MIT Licence
-      (function(win, doc){
-        if(win.addEventListener)return;		//No need to polyfill
-
-        function docHijack(p){var old = doc[p];doc[p] = function(v){return addListen(old(v))}}
-        function addEvent(on, fn, self){
-          return (self = this).attachEvent('on' + on, function(e){
-            var e = e || win.event;
-            e.preventDefault  = e.preventDefault  || function(){e.returnValue = false}
-            e.stopPropagation = e.stopPropagation || function(){e.cancelBubble = true}
-            fn.call(self, e);
-          });
-        }
-        function addListen(obj, i){
-          if(i = obj.length)while(i--)obj[i].addEventListener = addEvent;
-          else obj.addEventListener = addEvent;
-          return obj;
-        }
-
-        addListen([doc, win]);
-        if('Element' in win)win.Element.prototype.addEventListener = addEvent;			//IE8
-        else{		//IE < 8
-          doc.attachEvent('onreadystatechange', function(){addListen(doc.all)});		//Make sure we also init at domReady
-          docHijack('getElementsByTagName');
-          docHijack('getElementById');
-          docHijack('createElement');
-          addListen(doc.all);	
-        }
-      })(window, document);
-    </script>
-    <!-- 兼容IE8、IE9、IE10 -->
+    <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
   </body>
 </html>
