@@ -3,9 +3,10 @@ import Router from "vue-router";
 
 // page components
 import Home from "./views/Home.vue";
-import Game from "./views/Game.vue";
-import Levels from "./views/Levels.vue";
-import Shop from "./views/Shop.vue"
+import LevelOne from "./views/LevelOne.vue";
+import LevelTwo from "./views/LevelTwo.vue";
+import Shop from "./views/Shop.vue";
+import Purchase from "./views/Purchase.vue";
 
 Vue.use(Router);
 
@@ -17,25 +18,30 @@ export default new Router({
       component: Home
     },
     {
-      path: "/menu",
-      name: "menu",
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Menu.vue")
-    },
-    {
       path: "/game",
       name: "game",
-      component: Game
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Game.vue")
     },
     {
-      path: "/levels",
-      name: "Levels",
-      component: Levels
+      path: "/levelone",
+      name: "LevelOne",
+      component: LevelOne
+    },
+    {
+      path: "/leveltwo",
+      name: "LevelTwo",
+      component: LevelTwo
     },
     {
       path: "/shop",
       name: "shop",
       component: Shop
+    },
+    {
+      path: "/purchase",
+      name: "purchase",
+      component: Purchase
     }
   ]
 });
