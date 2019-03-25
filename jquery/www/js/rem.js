@@ -6,10 +6,10 @@ var tid;
 function refreshRem(){
     var width = docEl.getBoundingClientRect().width;
     var height = docEl.getBoundingClientRect().height;
-    if ((width / height) > (750 / 1334)) {
-        var rem = height / (1334 / 50);
+    if ((width / height) > (1280 / 720)) {
+        var rem = height / (720 / 100);
     } else {
-        var rem = width / (750 / 50);
+        var rem = width / (1280 / 100);
     }
     docEl.style.fontSize = rem + 'px';
 }

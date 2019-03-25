@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./www/css/common.css">
   <link rel="stylesheet" href="./www/css/index.css">
   <script src="./www/lib/jquery.js"></script>
-  <script src="./www/js/store.js"></script>
+  <script src="./www/js/rem.js"></script>
 </head>
 <body>
   <div id="game">
@@ -22,6 +22,7 @@
     </ul>
     <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
   </div>
+  <script src="./www/js/store.js"></script>
   <script>
     window.onload= function(){
       this.boot();
@@ -31,14 +32,22 @@
       // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对应4
     　$(document).keydown(function(event){
         // 这里用 三目 运算符 失效
+        var go = document.querySelector("#shouzhi");
         switch(event.keyCode){
+          case 8:
+            console.log('点击了 返回')
+            setTimeout(() =>{
+              go.style.width = "200px";
+              go.style.height = "200px";
+            }, 3000)
+            break;
           case 13:
             switch(selectIndex){
               case 1:
                   self.location.href = "./www/views/dom";
                 break;
               case 2:
-                  self.location.href = "./www/views/dom";
+                  self.location.href = "./www/views/map01";
                 break;
               case 3:
                   self.location.href = "./www/views/levels";
