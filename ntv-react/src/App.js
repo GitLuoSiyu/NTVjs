@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import asyncComponent from './component/asyncComponent/AsyncComponent';
 
-const Game = asyncComponent(() => import('./view/game/Game'))
-const Levels = asyncComponent(() => import('./view/levels/Levels'))
-const Menu = asyncComponent(() => import('./view/menu/Menu'))
-const Study = asyncComponent(() => import('./view/study/Study'))
-const Shop = asyncComponent(() => import('./view/shop/Shop'))
+const Menu = asyncComponent(() => import('./view/menu'))
+const LevelOne = asyncComponent(() => import('./view/levels/LevelOne'))
+const LevelTwo = asyncComponent(() => import('./view/levels/LevelTwo'))
+const Game = asyncComponent(() => import('./view/game'))
+const Shop = asyncComponent(() => import('./view/shop'))
+const Purchase = asyncComponent(() => import('./view/purchase'))
 
 export default class App extends React.Component {
   render() {
@@ -15,10 +16,11 @@ export default class App extends React.Component {
         <div>
           <Route render={() => <Redirect to="/menu" />} />
           <Route exact path="/menu" component={Menu} />
-          <Route exact path="/game" component={Game} />
-          <Route exact path="/levels" component={Levels} />
-          <Route exact path="/study" component={Study} />
+          {/* <Route exact path="/game" component={Game} />
+          <Route exact path="/levelone" component={LevelOne} />
+          <Route exact path="/leveltwo" component={LevelTwo} />
           <Route exact path="/shop" component={Shop} />
+          <Route exact path="/purchase" component={Purchase} /> */}
         </div>
       </Router>
     )

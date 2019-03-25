@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import common from "@/tools/common";
 import GameTitle from "@/components/GameTitle.vue"; // @ is an alias to /src
 
 @Component({
