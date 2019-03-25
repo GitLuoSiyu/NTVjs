@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import keydown from 'react-keydown';
-
 
 export default class Game extends Component {
   constructor(){
