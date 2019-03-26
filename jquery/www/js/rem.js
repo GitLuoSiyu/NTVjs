@@ -14,6 +14,11 @@ function refreshRem(){
     docEl.style.fontSize = rem + 'px';
 }
 
+// window.onload = function(){
+//     clearTimeout(tid);
+//     tid = setTimeout(refreshRem, 300);
+// }
+
 win.addEventListener('resize', function() {
     clearTimeout(tid);
     tid = setTimeout(refreshRem, 300);

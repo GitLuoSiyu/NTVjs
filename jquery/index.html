@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>首页</title>
   <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <script src="./www/js/rem.js"></script>
   <link rel="stylesheet" href="./www/css/common.css">
   <link rel="stylesheet" href="./www/css/index.css">
   <script src="./www/lib/jquery.js"></script>
-  <script src="./www/js/rem.js"></script>
 </head>
 <body>
   <div id="game">
@@ -37,11 +37,11 @@
       audio_select.play()
     }
 
-    audio.ontimeupdate = function(){
-			 if(audio.currentTime >= 0.1){
-				   audio.pause();
-			  }
-    };
+    // audio_select.ontimeupdate = function(){
+		// 	 if(audio_select.currentTime >= 1000){
+    //     audio_select.pause();
+		// 	  }
+    // };
 
     function boot(){
       var selectIndex = 2;
@@ -53,13 +53,13 @@
           case 13:
             switch(selectIndex){
               case 1:
-                  self.location.href = "./www/views/dom";
+                  self.location.href = "./www/views/map11";
                 break;
               case 2:
-                  self.location.href = "./www/views/map01";
+                  self.location.href = "./www/views/map11";
                 break;
               case 3:
-                  self.location.href = "./www/views/levels";
+                  self.location.href = "./www/views/map11";
                 break;
               case 4:
                   self.location.href = "./www/views/shop";

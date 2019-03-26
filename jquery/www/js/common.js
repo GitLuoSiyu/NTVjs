@@ -599,12 +599,12 @@ function overFocus(over_index){
 function overSelectFocus(over_index){
   switch(over_index){
     case 1:
-      overSelect.style.left = "34%";
-      overSelect.style.top = "60.8%";
+      overSelect.style.left = "36.4%";
+      overSelect.style.top = "72%";
       break;
     case 2:
-      overSelect.style.left = "51%";
-      overSelect.style.top = "60.8%";
+      overSelect.style.left = "50.6%";
+      overSelect.style.top = "72.2%";
       break;
     case 3:
       // 冗余
@@ -773,7 +773,7 @@ function startSelect(selectOrderIndex) {
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       
-      ordersFocus.style.left = "952px"; ordersFocus.style.top = "-14px";
+      ordersFocus.style.left = "0.15rem"; ordersFocus.style.top = "-0.14rem";
 
       preview_left.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
@@ -785,7 +785,7 @@ function startSelect(selectOrderIndex) {
       ordersFocus.style.visibility = "visible";
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      ordersFocus.style.left = "952px"; ordersFocus.style.top = "293px";
+      ordersFocus.style.left = "0.17rem"; ordersFocus.style.top = "2.94rem";
 
       preview_left.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
@@ -804,7 +804,7 @@ function startSelect(selectOrderIndex) {
       playFocus.style.visibility = "hidden";
       ordersFocus.style.visibility = "hidden";
       footFocus.style.visibility = "visible";
-      footFocus.style.left = "1040px";
+      footFocus.style.left = "2.2rem";
       
 
       break;
@@ -813,15 +813,15 @@ function startSelect(selectOrderIndex) {
       playFocus.style.visibility = "hidden";
       ordersFocus.style.visibility = "hidden";
       footFocus.style.visibility = "visible";
-      footFocus.style.left = "1132px";
+      footFocus.style.left = "3.12rem";
 
       break;
     case 7:
       // console.log('目前选中的是:指令-前进');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      btnFocus.style.left = "937px";
-      btnFocus.style.top = "228px";
+      btnFocus.style.left = "1.25rem";
+      btnFocus.style.top = "0.68rem";
       preview_walk.style.visibility = "visible";
       preview_left.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
@@ -831,8 +831,8 @@ function startSelect(selectOrderIndex) {
       // console.log('目前选中的是:指令-左转');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      btnFocus.style.left = "997px";
-      btnFocus.style.top = "228px";
+      btnFocus.style.left = "1.81rem";
+      btnFocus.style.top = "0.69rem";
       preview_left.style.visibility = "visible";
       preview_walk.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
@@ -842,8 +842,8 @@ function startSelect(selectOrderIndex) {
       // console.log('目前选中的是:指令-右转');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      btnFocus.style.left = "1057px";
-      btnFocus.style.top = "228px";
+      btnFocus.style.left = "2.38rem";
+      btnFocus.style.top = "0.69rem";
       preview_right.style.visibility = "visible";
       preview_left.style.visibility = "hidden";
       preview_walk.style.visibility = "hidden";
@@ -853,8 +853,8 @@ function startSelect(selectOrderIndex) {
       // console.log('目前选中的是:指令-循环');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      btnFocus.style.left = "1117px";
-      btnFocus.style.top = "228px";
+      btnFocus.style.left = "2.93rem";
+      btnFocus.style.top = "0.69rem";
       preview_left.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
       preview_walk.style.visibility = "hidden";
@@ -864,8 +864,8 @@ function startSelect(selectOrderIndex) {
       // console.log('目前选中的是:指令-取消指令');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
-      btnFocus.style.left = "1173px";
-      btnFocus.style.top = "228px";
+      btnFocus.style.left = "3.48rem";
+      btnFocus.style.top = "0.69rem";
       preview_left.style.visibility = "hidden";
       preview_right.style.visibility = "hidden";
       preview_walk.style.visibility = "hidden";
