@@ -52,8 +52,8 @@ var map1info = {
   playerCoorY:"",
   goldX:3,
   goldY:3,
-  goldTop:"190px",
-  goldLeft:"166px",
+  goldTop:"1.72rem",
+  goldLeft:"1.76rem",
   title:"收集XX卡片",
   faile:"关卡提示:"
 }
