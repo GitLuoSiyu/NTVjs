@@ -105,23 +105,8 @@
       </div>
     </div>
     <script src="./../lib/jquery.js"></script>
-    <!-- <script src="./../js/store.js"></script> -->
+    <script src="./../js/store.js"></script>
     <script>
-      var playerInfo = {
-        name: '', // 用户名称
-        playerLevel: 1, // 用户英雄等级，无意义
-        nowLevel: 1, // 目前已通关的等级
-        maxLevel: 1, // 可玩的最大等级
-        vip: false, // 是否是付费用户
-        score: 0, // 玩家积分
-        package: [], // 背包物品
-        shopPags: [], // 商城已开放的商品
-        payContent: false, // 是否显示 付费窗口
-      };
-
-      // 首次加载存入 localStorage
-      var playerInfoJson = JSON.stringify(playerInfo);
-      window.localStorage.setItem('playerInfo', playerInfoJson);
 
       var mapinfo = {
         gameMap:[
@@ -136,7 +121,7 @@
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ],          // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
-        coorX: 1, // 地图 1 X 的信息
+        coorX: 2, // 地图 1 X 的信息
         coorY: 1, // 地图 1 Y 的信息
         playerCoorX: '',
         playerCoorY: '',

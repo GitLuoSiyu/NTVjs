@@ -94,7 +94,7 @@
 
       <div
         id="dom_map"
-        style="background: url(./../assets/img/maps/map2-12.png) no-repeat center; width: 6rem; height: 6rem;"
+        style="background: url(./../assets/img/maps/map2-12.png) no-repeat center; width: 6rem; height: 6rem; background-size: 100% 100%;"
       >
         <div id="gold_box"></div>
         <img id="hero" src="./../assets/img/hero-right.png" />
@@ -105,23 +105,8 @@
       </div>
     </div>
     <script src="./../lib/jquery.js"></script>
-    <!-- <script src="./../js/store.js"></script> -->
+    <script src="./../js/store.js"></script>
     <script>
-      var playerInfo = {
-        name: '', // 用户名称
-        playerLevel: 1, // 用户英雄等级，无意义
-        nowLevel: 1, // 目前已通关的等级
-        maxLevel: 1, // 可玩的最大等级
-        vip: false, // 是否是付费用户
-        score: 0, // 玩家积分
-        package: [], // 背包物品
-        shopPags: [], // 商城已开放的商品
-        payContent: false, // 是否显示 付费窗口
-      };
-
-      // 首次加载存入 localStorage
-      var playerInfoJson = JSON.stringify(playerInfo);
-      window.localStorage.setItem('playerInfo', playerInfoJson);
 
       var mapinfo = {
         gameMap:[

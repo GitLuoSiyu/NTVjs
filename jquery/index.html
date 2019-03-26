@@ -25,24 +25,14 @@
   </div>
   <script src="./www/js/store.js"></script>
   <script>
-
-
     window.onload= function(){
       this.boot();
     }
-
     // 手指切换播放音效
     function playAudioSelect(){
       var audio_select = document.querySelector("#audio_select")
       audio_select.play()
     }
-
-    // audio_select.ontimeupdate = function(){
-		// 	 if(audio_select.currentTime >= 1000){
-    //     audio_select.pause();
-		// 	  }
-    // };
-
     function boot(){
       var selectIndex = 2;
       // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对应4
@@ -53,16 +43,16 @@
           case 13:
             switch(selectIndex){
               case 1:
-                  self.location.href = "./www/views/map01";
+                window.location.href = "./www/views/map02.html";
                 break;
               case 2:
-                  self.location.href = "./www/views/map01";
+                window.location.href = "./www/views/map11.html";
                 break;
               case 3:
-                  self.location.href = "./www/views/map11";
+                  self.location.href = "./www/views/map12.html";
                 break;
               case 4:
-                  self.location.href = "./www/views/shop";
+                  self.location.href = "./www/views/shop.html";
                 break;
               case 5:
 
@@ -113,7 +103,7 @@
         }  
   　　});
     }
-
+    
     function keyBoard(selectIndex){
       // console.log(selectIndex)
       var go = document.querySelector("#shouzhi");
@@ -138,7 +128,7 @@
           break;
       }
     }
-    
+
   </script>
 </body>
 </html>
