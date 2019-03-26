@@ -21,12 +21,28 @@
       <li id="payOff" class="" ><img src="./www/assets/img/payOff.png" alt="" /></li>
     </ul>
     <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
+    <audio src="./www/assets/media/select.ogg" id="audio_select"></audio>
   </div>
   <script src="./www/js/store.js"></script>
   <script>
+
+
     window.onload= function(){
       this.boot();
     }
+
+    // 手指切换播放音效
+    function playAudioSelect(){
+      var audio_select = document.querySelector("#audio_select")
+      audio_select.play()
+    }
+
+    audio.ontimeupdate = function(){
+			 if(audio.currentTime >= 0.1){
+				   audio.pause();
+			  }
+    };
+
     function boot(){
       var selectIndex = 2;
       // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对应4
@@ -34,13 +50,6 @@
         // 这里用 三目 运算符 失效
         var go = document.querySelector("#shouzhi");
         switch(event.keyCode){
-          case 8:
-            console.log('点击了 返回')
-            setTimeout(() =>{
-              go.style.width = "200px";
-              go.style.height = "200px";
-            }, 3000)
-            break;
           case 13:
             switch(selectIndex){
               case 1:
@@ -71,6 +80,7 @@
             } else {
               selectIndex--;
             }
+            window.playAudioSelect()
             window.keyBoard(selectIndex);
             break;
           case 38:
@@ -79,6 +89,7 @@
             } else {
               selectIndex++;
             }
+            window.playAudioSelect()
             window.keyBoard(selectIndex);
             break;
           case 39:
@@ -87,6 +98,7 @@
             } else {
               selectIndex++;
             }
+            window.playAudioSelect()
             window.keyBoard(selectIndex);
             break;
           case 40:
@@ -95,6 +107,7 @@
             } else {
               selectIndex--;
             }
+            window.playAudioSelect()
             window.keyBoard(selectIndex);
             break;
         }  
