@@ -29,6 +29,8 @@
   }
 
   function keyCode(){
+    var selectIndex = 1;
+    // 默认选中的下标是 1- ，2-，3-，4-，5-，6-，7-，8-，9-
     var isPaying = false;  
     // false 标明在选择商品阶段，true是进入 商品兑换的确认框阶段
     if(!isPaying) {
@@ -106,6 +108,76 @@
     console.log('根据下表值调整切换框的坐标位置')
     
 
+  }
+
+  function onKeyDown(selectIndex){
+    console.log("控制选项框的位置",selectIndex)
+    switch(selectIndex) {
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
+        break;
+      case 6:
+
+        break;
+      default:
+        break;
+    }
+  }
+
+  function enterEvent(selectIndex){
+    console.log('按下Enter根据下标值改变坐标')
+    switch(selectIndex){
+      case 1:
+
+
+        break;
+      case 2:
+
+
+        break;
+      case 3:
+
+
+        break;
+      case 4:
+
+
+        break;
+      case 5:
+
+
+        break;
+      case 6:
+
+
+        break;
+      case 7:
+
+
+        break;
+      case 8:
+
+
+        break;
+      case 9:
+
+
+        break;
+      default:
+        break;
+    }
   }
 
 

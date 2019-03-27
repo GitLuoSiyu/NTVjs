@@ -548,7 +548,8 @@ function overFocus(over_index){
   console.log('即将进行选择')
   //  overSelect 默认选中继续下一关
   var over_index = 1;  
-　$(document).keydown(function(event){
+　document.onkeydown = function(e){
+  event = e || event;
   // 这里用 三目 运算符 失效
   switch(event.keyCode){
     case 13:
@@ -612,7 +613,7 @@ function overFocus(over_index){
       window.overSelectFocus(over_index);
       break;
     }  
-　});
+　};
 }
 
 // 
@@ -640,7 +641,8 @@ function startDom() {
   // 没有 6
   // 7-walk 8-left 9-right 10-cancel
   // 11-loop  循环
-  $(document).keydown(function(event) {
+  document.onkeydown = function(e){
+    event = e || event;
     switch (event.keyCode) {
       case 13:
         switch (selectOrderIndex) {
@@ -780,7 +782,7 @@ function startDom() {
       default:
         break;
     }
-  });
+  };
 }
 
 // 手指按下的命令
