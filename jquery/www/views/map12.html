@@ -119,7 +119,7 @@
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ],          // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
+        ],        // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
         coorX: 1, // 地图 1 X 的信息
         coorY: 2, // 地图 1 Y 的信息
         playerCoorX: '',
@@ -134,14 +134,10 @@
         faile: '关卡提示:你可以通过循环来完成任务',
       };
     </script>
-    <script src="./../js/common.js"></script>
+    <script src="./../js/test.js"></script>
     <script>
       window.onload = function() {
-        this.startDom();
-        var playerImg = document.querySelector('#hero');
-        playerImg.style.top = mapinfo.playerTop;
-        playerImg.style.left = mapinfo.playerLeft;
-
+        this.startDom();  // test.js里的入口函数，可以再此函数之前先做新手引导
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';
         dom_map.style.top = '-6.45rem';
