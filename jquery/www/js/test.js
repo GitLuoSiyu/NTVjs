@@ -13,6 +13,8 @@
 // 属性数据
 var game_result = false;                     // 游戏是否结束，是否通关
 var selectOrderIndex = 1;                    // 游戏手指的下表
+var selectBtnIndex;                          // btn选项卡
+var selectOverIndex;                         // 下面
 var orders = [];                             // 命令栈的长度
 var loops = [];                              // 循环栈的长度
 var loopItems = []                           // 循环中的死循环
@@ -617,108 +619,17 @@ function startDom() {
     event = e || event;
     switch (event.keyCode) {
       case 13:
-        switch (selectOrderIndex) {
-          case 1:
-            // console.log('选中:命令栈');
-            // mingLingIndex = 1;
-
-            break;
-          case 2:
-            // console.log('选中:循环框');
-            // mingLingIndex = 2;
-
-            break;
-          case 3:
-            // console.log('选中:运行命令');
-            window.play()
-
-            break;
-          case 4:
-            // console.log('选中:重置');
-            window.location.reload() 
-            break;
-          case 5:
-            // console.log('选中:回到上个界面');
-            window.history.go(-1)
-            break;
-          case 7:
-            // console.log(mingLingIndex);
-            switch (mingLingIndex) {
-              case 1:
-                window.addOrder('walk');
-                break;
-              case 2:
-                window.addLoop('walk');
-                break;
-              default:
-                // 谁知道以后会改变成什么样子，绝对不能写boolean，不能写死
-                break;
-            }
-            break;
-          case 8:
-            switch (mingLingIndex) {
-              case 1:
-                window.addOrder('left');
-                break;
-              case 2:
-                window.addLoop('left');
-                break;
-              default:
-                break;
-            }
-
-            break;
-          case 9:
-            switch (mingLingIndex) {
-              case 1:
-                window.addOrder('right');
-                break;
-              case 2:
-                window.addLoop('right');
-                break;
-              default:
-                break;
-            }
-
-            break;
-          case 10:
-            switch (mingLingIndex) {
-              case 1:
-                window.addOrder('loop');
-                break;
-              case 2:
-                window.addLoop('loop');
-                break;
-              default:
-                break;
-            }
-
-            break;
-          case 11:
-            switch (mingLingIndex) {
-              case 1:
-                window.addOrder('cancel');
-                break;
-              case 2:
-                window.addLoop('cancel');
-                break;
-              default:
-                break;
-            }
-
-            break;
-          default:
-            break;
-        }
+        window.enterKeyCode(selectOrderIndex)
         break;
       case 37:
-        if (selectOrderIndex <= 7 && selectOrderIndex > 5) {
-          selectOrderIndex = 11;
-        } else if (selectOrderIndex <= 5) {
-          selectOrderIndex = 7;
-        } else {
-          selectOrderIndex--;
-        }
+        window.caseSelectLeft(selectOrderIndex)
+        // if (selectOrderIndex <= 7 && selectOrderIndex > 5) {
+        //   selectOrderIndex = 11;
+        // } else if (selectOrderIndex <= 5) {
+        //   selectOrderIndex = 7;
+        // } else {
+        //   selectOrderIndex--;
+        // }
         window.startSelect(selectOrderIndex);
         break;
       case 38:
@@ -756,11 +667,110 @@ function startDom() {
     }
   };
 }
+
+function enterKeyCode(selectOrderIndex){
+  // 点击对应的框，执行不同的命令
+  switch (selectOrderIndex) {
+    case 1:
+      // console.log('选中:命令栈');
+      // mingLingIndex = 1;
+      break;
+    case 2:
+      // console.log('选中:循环框');
+      // mingLingIndex = 2;
+
+      break;
+    case 3:
+      // console.log('选中:运行命令');
+      window.play()
+
+      break;
+    case 4:
+      // console.log('选中:重置');
+      window.location.reload() 
+      break;
+    case 5:
+      // console.log('选中:回到上个界面');
+      window.history.go(-1)
+      break;
+    case 7:
+      // console.log(mingLingIndex);
+      switch (mingLingIndex) {
+        case 1:
+          window.addOrder('walk');
+          break;
+        case 2:
+          window.addLoop('walk');
+          break;
+        default:
+          // 谁知道以后会改变成什么样子，绝对不能写boolean，不能写死
+          break;
+      }
+      break;
+    case 8:
+      switch (mingLingIndex) {
+        case 1:
+          window.addOrder('left');
+          break;
+        case 2:
+          window.addLoop('left');
+          break;
+        default:
+          break;
+      }
+
+      break;
+    case 9:
+      switch (mingLingIndex) {
+        case 1:
+          window.addOrder('right');
+          break;
+        case 2:
+          window.addLoop('right');
+          break;
+        default:
+          break;
+      }
+
+      break;
+    case 10:
+      switch (mingLingIndex) {
+        case 1:
+          window.addOrder('loop');
+          break;
+        case 2:
+          window.addLoop('loop');
+          break;
+        default:
+          break;
+      }
+
+      break;
+    case 11:
+      switch (mingLingIndex) {
+        case 1:
+          window.addOrder('cancel');
+          break;
+        case 2:
+          window.addLoop('cancel');
+          break;
+        default:
+          break;
+      }
+
+      break;
+    default:
+      break;
+  }
+
+}
+
+
 // 手指按下的命令
 function startSelect(selectOrderIndex) {
   switch (selectOrderIndex) {
     case 1:
-      // console.log('目前选中的是:命令栈');
+      console.log('目前选中的是:命令栈');
       mingLingIndex = 1;
       ordersFocus.style.visibility = "visible";
       playFocus.style.visibility = "hidden";
@@ -773,7 +783,7 @@ function startSelect(selectOrderIndex) {
       preview_walk.style.visibility = "hidden";
       break;
     case 2:
-      // console.log('目前选中的是:循环框');
+      console.log('目前选中的是:循环框');
       mingLingIndex = 2;
       ordersFocus.style.visibility = "visible";
       playFocus.style.visibility = "hidden";
@@ -786,14 +796,14 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 3:
-      // console.log('目前选中的是:运行指令');
+      console.log('目前选中的是:运行指令');
       ordersFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       playFocus.style.visibility = "visible";
 
       break;
     case 4:
-      // console.log('目前选中的是:重玩指令');
+      console.log('目前选中的是:重玩指令');
       playFocus.style.visibility = "hidden";
       ordersFocus.style.visibility = "hidden";
       footFocus.style.visibility = "visible";
@@ -802,7 +812,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 5:
-      // console.log('目前选中的是:回到上个页面');
+      console.log('目前选中的是:回到上个页面');
       playFocus.style.visibility = "hidden";
       ordersFocus.style.visibility = "hidden";
       footFocus.style.visibility = "visible";
@@ -810,7 +820,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 7:
-      // console.log('目前选中的是:指令-前进');
+      console.log('目前选中的是:指令-前进');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       btnFocus.style.left = "1.25rem";
@@ -821,7 +831,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 8:
-      // console.log('目前选中的是:指令-左转');
+      console.log('目前选中的是:指令-左转');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       btnFocus.style.left = "1.81rem";
@@ -832,7 +842,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 9:
-      // console.log('目前选中的是:指令-右转');
+      console.log('目前选中的是:指令-右转');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       btnFocus.style.left = "2.38rem";
@@ -843,7 +853,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 10:
-      // console.log('目前选中的是:指令-循环');
+      console.log('目前选中的是:指令-循环');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       btnFocus.style.left = "2.93rem";
@@ -854,7 +864,7 @@ function startSelect(selectOrderIndex) {
 
       break;
     case 11:
-      // console.log('目前选中的是:指令-取消指令');
+      console.log('目前选中的是:指令-取消指令');
       playFocus.style.visibility = "hidden";
       footFocus.style.visibility = "hidden";
       btnFocus.style.left = "3.48rem";
@@ -863,6 +873,164 @@ function startSelect(selectOrderIndex) {
       preview_right.style.visibility = "hidden";
       preview_walk.style.visibility = "hidden";
 
+      break;
+    default:
+      break;
+  }
+}
+
+// 逐一判断，对每一个 按钮都做 上下左右的判断，不分模块了！！！！
+function caseSelectLeft(selectOrderIndex){
+  switch(selectOrderIndex) {
+    case 1:
+
+      break;
+    case 2:
+
+      break;
+    case 3:
+
+      break;
+    case 4:
+
+      break;
+    case 5:
+
+      break;
+    case 6:
+
+      break;
+    case 7:
+
+      break;
+    case 8:
+    
+      break;
+    case 9:
+
+      break;
+    case 10:
+
+      break;
+    case 11:
+      
+      break;
+    default:
+      break;
+  }
+}
+function caseSelectUp(selectOrderIndex){
+  switch(selectOrderIndex) {
+    case 1:
+
+      break;
+    case 2:
+
+      break;
+    case 3:
+
+      break;
+    case 4:
+
+      break;
+    case 5:
+
+      break;
+    case 6:
+
+      break;
+    case 7:
+
+      break;
+    case 8:
+    
+      break;
+    case 9:
+
+      break;
+    case 10:
+
+      break;
+    case 11:
+      
+      break;
+    default:
+      break;
+  }
+}
+function caseSelectRight(selectOrderIndex){
+  switch(selectOrderIndex) {
+    case 1:
+
+      break;
+    case 2:
+
+      break;
+    case 3:
+
+      break;
+    case 4:
+
+      break;
+    case 5:
+
+      break;
+    case 6:
+
+      break;
+    case 7:
+
+      break;
+    case 8:
+    
+      break;
+    case 9:
+
+      break;
+    case 10:
+
+      break;
+    case 11:
+      
+      break;
+    default:
+      break;
+  }
+}
+function caseSelectDown(selectOrderIndex){
+  switch(selectOrderIndex) {
+    case 1:
+
+      break;
+    case 2:
+
+      break;
+    case 3:
+
+      break;
+    case 4:
+
+      break;
+    case 5:
+
+      break;
+    case 6:
+
+      break;
+    case 7:
+
+      break;
+    case 8:
+    
+      break;
+    case 9:
+
+      break;
+    case 10:
+
+      break;
+    case 11:
+      
       break;
     default:
       break;

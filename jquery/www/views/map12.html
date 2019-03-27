@@ -103,6 +103,7 @@
       <div id="faile_prompf">
         <!-- 失败后的错误提示 -->
       </div>
+      <audio src="./../assets/media/loop-ingame.ogg" id="gameBgMusic"></audio>
     </div>
     <script src="./../js/store.js"></script>
     <script>
@@ -138,6 +139,9 @@
     <script>
       window.onload = function() {
         this.startDom();  // test.js里的入口函数，可以再此函数之前先做新手引导
+        var bgmusic = document.querySelector("#gameBgMusic")
+        bgmusic.loop = true;
+        bgmusic.play()
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';
         dom_map.style.top = '-6.45rem';

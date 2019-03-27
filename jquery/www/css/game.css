@@ -66,7 +66,7 @@ body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: 
 #game_tip #map_number img{width: 100%; height: 100%;}
 #game_tip #map_title{position: absolute;color: #FFFFFF;font: 600 0.14rem/2 "";left: 30%;top: 0.08rem;}
 
-#right_orders{position: relative; width: 2.94rem; height: 2.16rem; left: 78%; top: -6%; background: url(./../assets/img/orders.png) no-repeat center; background-size: 100% 100%;}
+#right_orders{position: relative; width: 2.94rem; height: 2.16rem; left: 73%; top: -6%; background: url(./../assets/img/orders.png) no-repeat center; background-size: 100% 100%;}
 #right_orders #orders{display: inline-block;}
 #right_orders #orders li{display: inline-block;position: absolute; border-radius: 0.08rem; width: 0.44rem; height: 0.44rem;}
 #right_orders #orders #order_0{left: 0.49rem; top: 0.76rem;}
@@ -83,7 +83,7 @@ body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: 
 #right_orders #orders .order_loop{background: url(./../assets/img/loop.png) no-repeat center;}
 #order_select{z-index: 13; ;position: absolute; width: 2.76rem; height: 2.76rem; left: 0.15rem; top: -0.14rem; display: inline-block; background: url(./../assets//img/ordersFocus.png) no-repeat center; background-size: 100%; z-index: 12; }
 
-#btn_order{position: relative; width: 4.33rem; height: 1.57rem; left: 70%; top: -14%; background: url(./../assets//img/btn_bg.png) no-repeat center; background-size: 100% 100%;}
+#btn_order{position: relative; width: 4.33rem; height: 1.57rem; left: 65%; top: -14%; background: url(./../assets//img/btn_bg.png) no-repeat center; background-size: 100% 100%;}
 #btn_order div {position: absolute; display: inline-block; width: 0.44rem; height: 0.44rem; top: 0.84rem; border-radius: 0.08rem;}
 #btn_order #walk{left: 1.4rem; background: url(./../assets/img/walk.png) no-repeat center;}
 #btn_order #left{left: 1.96rem; background: url(./../assets/img/left.png) no-repeat center;}
@@ -92,12 +92,12 @@ body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: 
 #btn_order #cancel{left: 3.64rem; background: url(./../assets/img/cancel.png) no-repeat center; background-size: 100%;}
 #btn_select{position: absolute; width: 0.75rem; height: 0.75rem; display: inline-block; background: url(./../assets//img/btnFoucs.png) no-repeat center; background-size: 100%; left: 10.25rem; top: 0.69rem; z-index: 11;}
 
-#preview{position: relative; width: 1.08rem; height: 0.88rem; left: 70%; top: -28%; border-radius: 0.08rem ;}
+#preview{position: relative; width: 1.08rem; height: 0.88rem; left: 65%; top: -28%; border-radius: 0.08rem ;}
 #preview #order_view_walk{ visibility: hidden;  position: absolute; left: 0.14rem; top: 0.12rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_walk.png) no-repeat center;}
 #preview #order_view_left{ visibility: hidden;  position: absolute; left: 0.14rem; top: 0.12rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_left.png) no-repeat center;}
 #preview #order_view_right{ visibility: hidden; position: absolute; left: 0.14rem; top: 0.12rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_right.png) no-repeat center;}
 
-#xunhuan{position: relative; width: 2.84rem; height: 2.2rem; left: 79%; top: -29%; background: url(./../assets/img/loop_bg.png) no-repeat center; background-size: 100% 100%;}
+#xunhuan{position: relative; width: 2.84rem; height: 2.2rem; left: 74%; top: -29%; background: url(./../assets/img/loop_bg.png) no-repeat center; background-size: 100% 100%;}
 #xunhuan #xun_orders li{display: inline-block;position: absolute; border-radius: 0.08rem; width: 0.44rem; height: 0.44rem;}
 #xunhuan #xun_orders #xun_0{left: 0.364rem; top: 0.872rem;}
 #xunhuan #xun_orders #xun_1{left: 0.92rem; top: 0.872rem;}
@@ -112,7 +112,7 @@ body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: 
 #xun_orders .loop_right{background: url(./../assets/img/right.png) no-repeat center;}
 #xun_orders .loop_loop{background: url(./../assets/img/loop.png) no-repeat center;}
 
-#footer {position: relative; width: 4.3rem; height: 1.4rem; left: 72%; top: -22%;}
+#footer {position: relative; width: 4.3rem; height: 1.4rem; left: 68%; top: -22%;}
 #footer div {display: inline-block; outline: none; position: absolute; top: 0.54rem;}
 #footer div img {width: 100%; height: 100%; display: block;}
 #footer #play{width: 2.2rem; height: 1.0rem; left: -0.06rem;}
