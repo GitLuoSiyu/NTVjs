@@ -94,7 +94,7 @@
 
       <div
         id="dom_map"
-        style="background: url(./../assets/img/maps/map2-12.png) no-repeat center; width: 6rem; height: 6rem;"
+        style="background: url(./../assets/img/maps/map2-15.png) no-repeat center; width: 6rem; height: 6rem;"
       >
         <div id="gold_box"></div>
         <img id="hero" src="./../assets/img/hero-right.png" />
@@ -125,10 +125,12 @@
         coorY: 3, // 地图 1 Y 的信息
         playerCoorX: '',
         playerCoorY: '',
-        goldX: 3,
-        goldY: 3,
-        goldTop: '1.72rem',
-        goldLeft: '1.76rem',
+        goldX: 5,
+        goldY: 5,
+        playerTop:'1.58rem',
+        playerLeft:'1.72rem',
+        goldTop: '2.86rem',
+        goldLeft: '2.86rem',
         title: '收集XX卡片',
         faile: '关卡提示:',
       };
@@ -138,8 +140,8 @@
       window.onload = function() {
         this.startDom();
         var playerImg = document.querySelector('#hero');
-        playerImg.style.top = '0.4rem';
-        playerImg.style.left = '0.58rem';
+        playerImg.style.top = mapinfo.playerTop;
+        playerImg.style.left = mapinfo.playerLeft;
 
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';

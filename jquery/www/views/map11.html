@@ -127,6 +127,8 @@
         playerCoorY: '',
         goldX: 3,
         goldY: 3,
+        playerTop:'0.46rem',
+        playerLeft:'0.62rem',
         goldTop: '1.72rem',
         goldLeft: '1.76rem',
         title: '收集XX卡片',
@@ -136,10 +138,13 @@
     <script src="./../js/common.js"></script>
     <script>
       window.onload = function() {
+        var nowLevel = 11;
+        window.localStorage.setItem("nowLevel", nowLevel)
+
         this.startDom();
         var playerImg = document.querySelector('#hero');
-        playerImg.style.top = '0.4rem';
-        playerImg.style.left = '0.58rem';
+        playerImg.style.top = mapinfo.playerTop;
+        playerImg.style.left = mapinfo.playerLeft;
 
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';

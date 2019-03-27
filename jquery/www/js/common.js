@@ -236,7 +236,7 @@ function play(){
 }
 
 function runLoop(){
-  // console.log("查看循环中的情况",loops);
+  console.log("查看循环中的情况",loops);
   for(var i = 0; i < loops.length; i++){
     (function(i) {
       setTimeout(function() {
@@ -279,8 +279,8 @@ function gameThrottle(){
     }
     console.log(faileCounts);
     // console.log(orders)
-    playerImg.style.top = '0.4rem'
-    playerImg.style.left = '0.58rem'
+    playerImg.style.top = mapinfo.playerTop;
+    playerImg.style.left = mapinfo.playerLeft;
     playerRota = "right";  
     playerImg.src = "./../assets/img/hero-right.png"
     cx = mapinfo.coorX; 
@@ -313,7 +313,7 @@ function runRotation(){
 }
 
 function runCoorPlayer(){
-  // console.log('目前的方向是：',playerRota)
+  console.log('目前的方向是：',playerRota)
   switch(playerRota){
     case "left":
       window.runGoLeft()
@@ -335,19 +335,19 @@ function runCoorPlayer(){
 function getCoorInfo(item){
   switch(item){
     case 0:
-      // console.log('前方的坐标是0，不能走')
+      console.log('前方的坐标是0，不能走')
       break;
     case 1:
       window.runRotation()
       window.runCoorPlayer()
       break;
     case 2:
-      // console.log('前面的坐标是宝箱，即将进行碰撞检测')
+      console.log('前面的坐标是宝箱，即将进行碰撞检测')
       window.runRotation()
       window.runCoorPlayer()      
       break;
     case 3:
-      // console.log('前面的坐标是 其他物品 ，即将进行碰撞检测')
+      console.log('前面的坐标是 其他物品 ，即将进行碰撞检测')
       window.runRotation()
       window.runCoorPlayer()
       break;
@@ -492,7 +492,7 @@ function runGoRight(){
   // i = i % 4;
   var name = "./../assets/img/hero-right.png";
   playerImg.src = name;
-  playerImg.style.left = parseFloat(playerImg.style.left) + 0.55 +'rem';
+  playerImg.style.left = parseFloat(playerImg.style.left) + 0.56 +'rem';
   playerFlag = "right";
 
 }
@@ -512,7 +512,7 @@ function runGoLeft(){
   // i = i % 4;
   var name = "./../assets/img/hero-left.png";
   playerImg.src = name;
-  playerImg.style.left = parseFloat(playerImg.style.left) - 0.55 + 'rem';
+  playerImg.style.left = parseFloat(playerImg.style.left) - 0.56 + 'rem';
   playerFlag = "left";
 
 }
@@ -556,13 +556,19 @@ function overFocus(over_index){
         case 1:
           console.log('选中的是继续下一关',game_result)
           setTimeout(() => {
-            window.location.reload() 
-          }, 1000)
+            // window.location.reload() 
+            var nowLevel = Number(window.localStorage.getItem("nowLevel"))
+            if(nowLevel < 20) {
+              self.location.href = "./map" + (nowLevel+1) + ".html"
+            } else {
+              self.location.href = "./success.html"
+            }
+          }, 100)
           break;
         case 2: 
           console.log('选中的是重新开始')
           setTimeout(() => {
-            window.location.reload() 
+            // window.location.reload() 
           }, 1000)
           break;
         case 3:
