@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./www/css/common.css">
   <link rel="stylesheet" href="./www/css/index.css">
   <script src="./www/js/rem.js"></script>
-  <script src="./www/lib/jquery.js"></script>
+  <script src="./www/js/ntvKeydown.js"></script>
 </head>
 <body>
   <div id="game">
@@ -36,7 +36,8 @@
     function boot(){
       var selectIndex = 2;
       // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对应4
-    　$(document).keydown(function(event){
+    　document.onkeydown = function(e){
+        event = e || event;
         // 这里用 三目 运算符 失效
         var go = document.querySelector("#shouzhi");
         switch(event.keyCode){
@@ -105,7 +106,7 @@
             window.keyBoard(selectIndex);
             break;
         }  
-  　　});
+  　　}
     }
     
     function keyBoard(selectIndex){
