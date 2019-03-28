@@ -7,24 +7,24 @@
   <title>Levels-one</title>
   <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./../css/common.css">
-  <!-- <script src="./../js/rem.js"></script> -->
+  <script src="./../js/rem.js"></script>
   <style>
-    html{font-size: 625%;}
+    /* html{font-size: 625%;} */
     body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
       width: 100%;height: 100%;background-color: #171717;}
     #game_bg { position: relative; z-index: 1;}
     #game_bg div { z-index: 2; position: absolute; background: url(./../assets/img/map_item_bg.png) no-repeat center; background-size: 100% 100%; width: 0.6rem; height: 0.6rem;}
-    #game_bg #map-1 {left: 1.0rem; top: 2.3rem;}
-    #game_bg #map-2 {left: 2.3rem; top: 2.3rem;}
-    #game_bg #map-3 {left: 3.6rem; top: 2.3rem;}
-    #game_bg #map-4 {left: 4.9rem; top: 2.3rem;}
-    #game_bg #map-5 {left: 6.2rem; top: 2.3rem;}
-    #game_bg #map-6 {left: 7.5rem; top: 2.3rem;}
-    #game_bg #map-7 {left: 8.8rem; top: 2.3rem;}
-    #game_bg #map-8 {left: 10.2rem; top: 2.3rem;}
-    #game_bg #map-9 {left: 11.5rem; top: 2.3rem;}
-    #game_bg #map-10 {left: 12.5rem; top: 2.3rem;}
-    #game_bg #player {left: 2.3rem; top: 2.3rem;}
+    #game_bg #map-1 {left: 1.3rem; top: 2.2rem;}
+    #game_bg #map-2 {left: 2.3rem; top: 2.6rem;}
+    #game_bg #map-3 {left: 3.4rem; top: 2.9rem;}
+    #game_bg #map-4 {left: 4.7rem; top: 2.7rem;}
+    #game_bg #map-5 {left: 5.7rem; top: 3.2rem;}
+    #game_bg #map-6 {left: 6.9rem; top: 3.5rem;}
+    #game_bg #map-7 {left: 8.1rem; top: 3.9rem;}
+    #game_bg #map-8 {left: 9.7rem; top: 3.6rem;}
+    #game_bg #map-9 {left: 11.0rem; top: 3.8rem;}
+    #game_bg #map-10 {left: 12.3rem; top: 4.0rem;}
+    #game_bg #player {left: 1.28rem; top: 1.86rem;z-index: 3; position: absolute; background: url(./../assets/img/level_player.png) no-repeat center; background-size: 100% 100%;width: 0.6rem; height: 0.6rem; display: inline-block;}
   </style>
 </head>
 <body>
@@ -47,9 +47,171 @@
 <script src="./../js/store.js"></script>
 <script>
   window.onload = function(){
-    console.log('读取用户信息');
 
+    window.load()
+  }
 
+  function load(){
+    console.log('在这里，先判断用户身份和 关卡情况，再进入下一个函数')
+
+    window.boot()
+  }
+
+  function boot() {
+    console.log('入口函数')
+    var mapIndex = 1;
+    // 猴子默认下标
+    document.onkeydown = function(e){
+      event = e || event;
+      switch(event.keyCode) {
+        case 8:
+          window.history.go(-1)
+          break;
+        case 13:
+          window.enterMap(mapIndex)
+          break;
+        case 37:
+          if(mapIndex <= 1) {
+            mapIndex = 10;
+          } else {
+            mapIndex--
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 38:
+          if(mapIndex >= 10) {
+            mapIndex = 1;
+          } else {
+            mapIndex++
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 39:
+          if(mapIndex >= 10) {
+            mapIndex = 1;
+          } else {
+            mapIndex++
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 40:
+          if(mapIndex <= 1) {
+            mapIndex = 10;
+          } else {
+            mapIndex--
+          }
+          window.movePlayer(mapIndex)
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  function movePlayer(mapIndex){
+    console.log(mapIndex)
+    var select = document.querySelector("#player")
+    switch(mapIndex) {
+      case 1:
+        select.style.left = "1.28rem";
+        select.style.top = "1.86rem";
+
+        break;
+      case 2:
+        select.style.left = "2.28rem";
+        select.style.top = "2.26rem";
+
+        break;
+      case 3:
+        select.style.left = "3.38rem";
+        select.style.top = "2.56rem";
+
+        break;
+      case 4:
+        select.style.left = "4.68rem";
+        select.style.top = "2.36rem";
+
+        break;
+      case 5:
+        select.style.left = "5.68rem";
+        select.style.top = "2.86rem";
+
+        break;
+      case 6:
+        select.style.left = "6.88rem";
+        select.style.top = "3.16rem";
+
+        break;
+      case 7:
+        select.style.left = "8.08rem";
+        select.style.top = "3.56rem";
+
+        break;
+      case 8:
+        select.style.left = "9.68rem";
+        select.style.top = "3.26rem";
+
+        break;
+      case 9:
+        select.style.left = "10.98rem";
+        select.style.top = "3.46rem";
+
+        break;
+      case 10:
+        select.style.left = "12.28rem";
+        select.style.top = "3.66rem";
+
+        break;
+      default:
+        break;
+    }
+  }
+
+  function enterMap(mapIndex){
+    switch(mapIndex) {
+      case 1:
+        self.location.href = "./map01.html";
+
+        break;
+      case 2:
+        self.location.href = "./map02.html";
+
+        break;
+      case 3:
+        self.location.href = "./map03.html";
+
+        break;
+      case 4:
+        self.location.href = "./map04.html";
+
+        break;
+      case 5:
+        self.location.href = "./map05.html";
+
+        break;
+      case 6:
+        self.location.href = "./map06.html";
+
+        break;
+      case 7:
+        self.location.href = "./map07.html";
+
+        break;
+      case 8:
+        self.location.href = "./map08.html";
+
+        break;
+      case 9:
+        self.location.href = "./map09.html";
+
+        break;
+      case 10:
+        self.location.href = "./map10.html";
+
+        break;
+      default:
+        break;
+    }
   }
 </script>
 </html>
