@@ -7,20 +7,47 @@
   <title>Levels-one</title>
   <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./../css/common.css">
+  <!-- <script src="./../js/rem.js"></script> -->
   <style>
+    html{font-size: 625%;}
     body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
       width: 100%;height: 100%;background-color: #171717;}
+    #game_bg { position: relative; z-index: 1;}
+    #game_bg div { z-index: 2; position: absolute; background: url(./../assets/img/map_item_bg.png) no-repeat center; background-size: 100% 100%; width: 0.6rem; height: 0.6rem;}
+    #game_bg #map-1 {left: 1.0rem; top: 2.3rem;}
+    #game_bg #map-2 {left: 2.3rem; top: 2.3rem;}
+    #game_bg #map-3 {left: 3.6rem; top: 2.3rem;}
+    #game_bg #map-4 {left: 4.9rem; top: 2.3rem;}
+    #game_bg #map-5 {left: 6.2rem; top: 2.3rem;}
+    #game_bg #map-6 {left: 7.5rem; top: 2.3rem;}
+    #game_bg #map-7 {left: 8.8rem; top: 2.3rem;}
+    #game_bg #map-8 {left: 10.2rem; top: 2.3rem;}
+    #game_bg #map-9 {left: 11.5rem; top: 2.3rem;}
+    #game_bg #map-10 {left: 12.5rem; top: 2.3rem;}
+    #game_bg #player {left: 2.3rem; top: 2.3rem;}
   </style>
 </head>
 <body>
-  <div id="shop_bg"  style="background:url(./../assets/img/package.png) no-repeat center; width: 100%; height: 100%; background-size: 100% 100%;">
-
+  <div id="shop_bg"  style="background:url(./../assets/img/Levels_one_bg.png) no-repeat center; width: 100%; height: 100%; background-size: 100% 100%;">
+    <div id="game_bg">
+      <span id="player"></span>
+      <div id="map-1" class=""></div>
+      <div id="map-2" class=""></div>
+      <div id="map-3" class=""></div>
+      <div id="map-4" class=""></div>
+      <div id="map-5" class=""></div>
+      <div id="map-6" class=""></div>
+      <div id="map-7" class=""></div>
+      <div id="map-8" class=""></div>
+      <div id="map-9" class=""></div>
+      <div id="map-10" class=""></div>
+    </div>
   </div>
 </body>
 <script src="./../js/store.js"></script>
 <script>
   window.onload = function(){
-    console.log('读取 用户信息');
+    console.log('读取用户信息');
 
 
   }

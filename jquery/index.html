@@ -14,10 +14,10 @@
   <div id="game">
     <div id="canvas"></div>
     <ul id="menu_maps">
-      <li id="map1" class="" ><img src="./www/assets/img/map1.png" alt="" /></li>
-      <li id="map2" class="" ><img src="./www/assets/img/map3.png" alt="" /></li>
-      <li id="map3" class="" ><img src="./www/assets/img/map2.png" alt="" /></li>
-      <li id="payOff" class="" ><img src="./www/assets/img/payOff.png" alt="" /></li>
+      <li id="map1" class="" ><img src="./www/assets/img/map_one.png" alt="" /></li>
+      <li id="map2" class="" ><img src="./www/assets/img/map_two.png" alt="" /></li>
+      <li id="map3" class="" ><img src="./www/assets/img/map_shop.png" alt="" /></li>
+      <li id="payOff" class="" ><img src="./www/assets/img/purchase.png" alt="" /></li>
     </ul>
     <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
     <audio src="./www/assets/media/select.ogg" id="audio_select"></audio>
@@ -47,10 +47,10 @@
           case 13:
             switch(selectIndex){
               case 1:
-                window.location.href = "./www/views/map02.html";
+                window.location.href = "./www/views/levelsone.html";
                 break;
               case 2:
-                window.location.href = "./www/views/map12.html";
+                window.location.href = "./www/views/levelstwo.html";
                 break;
               case 3:
                   self.location.href = "./www/views/shop.html";
@@ -114,19 +114,19 @@
       switch(selectIndex){
         case 1:
           go.style.left = "17%";
-          go.style.top = "52%";
+          go.style.top = "60%";
           break;
         case 2:
-          go.style.left = "48%";
-          go.style.top = "52%";
+          go.style.left = "50%";
+          go.style.top = "60%";
           break;
         case 3:
           go.style.left = "82%";
-          go.style.top = "52%";
+          go.style.top = "60%";
           break;
         case 4:
-          go.style.left = "90%";
-          go.style.top = "85%";
+          go.style.left = "88%";
+          go.style.top = "10%";
           break;
         default:
           break;

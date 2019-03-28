@@ -1,0 +1,3 @@
+rootProject.name = 'ntvRN'
+
+include ':app'
