@@ -20,7 +20,7 @@
       style="background: url(./../assets/img/game1.png) no-repeat; background-size: 100% 100%; z-index: 1;"
     >
       <div id="game_tip">
-        <div id="map_title">关卡9的提示语:</div>
+        <div id="map_title">关卡9的提示语:把编组方块放在编组动作的最后，会有神奇的效果哦！</div>
       </div>
 
       <div id="right_orders">
@@ -126,10 +126,12 @@
         playerCoorY: '',
         goldX: 3,
         goldY: 3,
-        goldTop: '1.72rem',
+        playerTop: '1.00rem',
+        playerLeft: '0.60rem',
+        goldTop: '1.24rem',
         goldLeft: '1.76rem',
         title: '收集XX卡片',
-        faile: '关卡提示:',
+        faile: '关卡提示:利用循环，→ ↰ → → 田',
       };
     </script>
     <script src="./../js/common.js"></script>
@@ -137,8 +139,8 @@
       window.onload = function() {
         this.startDom();
         var playerImg = document.querySelector('#hero');
-        playerImg.style.top = '0.4rem';
-        playerImg.style.left = '0.58rem';
+        playerImg.style.top = mapinfo.playerTop
+        playerImg.style.left = mapinfo.playerLeft
 
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';

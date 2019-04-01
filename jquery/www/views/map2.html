@@ -20,7 +20,7 @@
       style="background: url(./../assets/img/game1.png) no-repeat; background-size: 100% 100%; z-index: 1;"
     >
       <div id="game_tip">
-        <div id="map_title">关卡2的提示语:</div>
+        <div id="map_title">关卡2的提示语:使用3个“前进”，即可过关哦！</div>
       </div>
 
       <div id="right_orders">
@@ -126,10 +126,12 @@
         playerCoorY: '',
         goldX: 1,
         goldY: 4,
-        goldTop: '0.72rem',
-        goldLeft: '2.16rem',
+        playerTop: '0.4rem',
+        playerLeft: '0.58rem',
+        goldTop: '0.66rem',
+        goldLeft: '2.30rem',
         title: '收集XX卡片',
-        faile: '关卡提示:',
+        faile: '关卡提示:→ → →',
       };
     </script>
     <script src="./../js/common.js"></script>
@@ -137,8 +139,8 @@
       window.onload = function() {
         this.startDom();
         var playerImg = document.querySelector('#hero');
-        playerImg.style.top = '0.4rem';
-        playerImg.style.left = '0.58rem';
+        playerImg.style.top = mapinfo.playerTop
+        playerImg.style.left = mapinfo.playerLeft
 
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';

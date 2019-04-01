@@ -20,7 +20,7 @@
       style="background: url(./../assets/img/game1.png) no-repeat; background-size: 100% 100%; z-index: 1;"
     >
       <div id="game_tip">
-        <div id="map_title">关卡6的提示语:</div>
+        <div id="map_title">关卡6的提示语:“右转”之后要怎么转才会回到原来的方向呢？</div>
       </div>
 
       <div id="right_orders">
@@ -124,12 +124,14 @@
         coorY: 1, // 地图 1 Y 的信息
         playerCoorX: '',
         playerCoorY: '',
-        goldX: 3,
-        goldY: 3,
-        goldTop: '1.72rem',
-        goldLeft: '1.76rem',
+        goldX: 2,
+        goldY: 5,
+        playerTop: '0.4rem',
+        playerLeft: '0.58rem',
+        goldTop: '1.28rem',
+        goldLeft: '2.86rem',
         title: '收集XX卡片',
-        faile: '关卡提示:',
+        faile: '关卡提示:→ → ↱ → ↰ → →',
       };
     </script>
     <script src="./../js/common.js"></script>
@@ -137,8 +139,8 @@
       window.onload = function() {
         this.startDom();
         var playerImg = document.querySelector('#hero');
-        playerImg.style.top = '0.4rem';
-        playerImg.style.left = '0.58rem';
+        playerImg.style.top = mapinfo.playerTop
+        playerImg.style.left = mapinfo.playerLeft
 
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';
