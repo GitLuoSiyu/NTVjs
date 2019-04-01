@@ -618,6 +618,9 @@ function startDom() {
   document.onkeydown = function(e){
     event = e || event;
     switch (event.keyCode) {
+      case 8:
+        window.history.go(-1)
+        break;
       case 13:
         window.enterKeyCode(selectOrderIndex)
         break;

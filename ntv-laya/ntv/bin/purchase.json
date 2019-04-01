@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":1280,"height":720,"runtime":"laya.display.Scene"},"compId":2,"child":[{"type":"Image","props":{"y":134,"x":351.5,"width":577,"skin":"comp/img_bg.png","height":432},"compId":4}],"loadList":["comp/img_bg.png"],"loadList3D":[]}

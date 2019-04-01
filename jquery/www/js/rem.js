@@ -9,7 +9,7 @@ function refreshRem(){
     if ((width / height) > (1280 / 720)) {
         var rem = height / (720 / 100);
     } else {
-        var rem = width / (1280 / 100);
+        var rem = width / (880 / 100);
     }
     docEl.style.fontSize = rem + 'px';
 }
@@ -21,12 +21,12 @@ function refreshRem(){
 
 win.addEventListener('resize', function() {
     clearTimeout(tid);
-    tid = setTimeout(refreshRem, 300);
+    tid = setTimeout(refreshRem, 150);
 }, false);
 win.addEventListener('pageshow', function(e) {
     if (e.persisted) {
         clearTimeout(tid);
-        tid = setTimeout(refreshRem, 300);
+        tid = setTimeout(refreshRem, 150);
     }
 }, false);
 

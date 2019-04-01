@@ -10,15 +10,12 @@
       href="./../assets/img/favicon.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="./../css/game.css" />
+    <link rel="stylesheet" href="./../css/test.css" />
     <!-- REM 必须在 css 之后 -->
     <script src="./../js/rem.js"></script>
   </head>
   <body>
-    <div
-      id="backgroud"
-      style="background: url(./../assets/img/game2.jpg) no-repeat; background-size: 100% 100%; z-index: 1;"
-    >
+    <div id="backgroud" style="background: url(./../assets/img/game2.jpg) no-repeat; background-size: 100% 100%; z-index: 1; width: 1280px; height: 720px;">
       <div id="game_tip">
         <div id="map_title">关卡12的提示语:</div>
       </div>
@@ -99,11 +96,7 @@
         <div id="gold_box"></div>
         <img id="hero" src="./../assets/img/hero-right.png" />
       </div>
-
-      <div id="faile_prompf">
-        <!-- 失败后的错误提示 -->
-      </div>
-      <audio src="./../assets/media/loop-ingame.ogg" id="gameBgMusic"></audio>
+      <!-- <audio src="./../assets/media/loop-ingame.ogg" id="gameBgMusic"></audio> -->
     </div>
     <script src="./../js/store.js"></script>
     <script>
@@ -139,12 +132,12 @@
     <script>
       window.onload = function() {
         this.startDom();  // test.js里的入口函数，可以再此函数之前先做新手引导
-        var bgmusic = document.querySelector("#gameBgMusic")
-        bgmusic.loop = true;
-        bgmusic.play()
+        // var bgmusic = document.querySelector("#gameBgMusic")
+        // bgmusic.loop = true;
+        // bgmusic.play()
         var dom_map = document.querySelector('#dom_map');
         dom_map.style.left = '2.5rem';
-        dom_map.style.top = '-6.45rem';
+        dom_map.style.top = '2.55rem';
       };
     </script>
   </body>

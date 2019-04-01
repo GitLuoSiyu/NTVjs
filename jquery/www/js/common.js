@@ -60,6 +60,9 @@ function gameOver() {
     playerImg.style.visibility = "hidden"
     document.querySelector('#mask').style.display = 'block';
     // 更新 store
+    var nowLevel = window.localStorage.getItem("nowLevel");
+    nowLevel++;
+    window.localStorage.setItem("nowLevel",nowLevel);
     var getPlayerInfo = window.localStorage.getItem("playerInfo")
     window.overFocus();
   }
@@ -560,7 +563,7 @@ function overFocus(over_index){
             // window.location.reload() 
             var nowLevel = Number(window.localStorage.getItem("nowLevel"))
             if(nowLevel < 20) {
-              self.location.href = "./map" + (nowLevel+1) + ".html"
+              self.location.href = "./map" + (Number(nowLevel)+1) + ".html"
             } else {
               self.location.href = "./success.html"
             }
@@ -644,6 +647,9 @@ function startDom() {
   document.onkeydown = function(e){
     event = e || event;
     switch (event.keyCode) {
+      case 8:
+        window.history.go(-1)
+        break;
       case 13:
         switch (selectOrderIndex) {
           case 1:

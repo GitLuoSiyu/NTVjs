@@ -1,0 +1,9 @@
+<page>
+   <item name="boot.scene" props="" ifExport="默认" aName="boot"/>
+   <item name="levelTwo.scene" props="" ifExport="默认" aName="levelTwo"/>
+   <item name="levelOne.scene" props="" ifExport="默认" aName="levelOne"/>
+   <item name="shop.scene" props="" ifExport="默认" aName="shop"/>
+   <item name="purchase.scene" props="" ifExport="默认" aName="purchase"/>
+   <item name="gameOne.scene" props="" ifExport="默认" aName="gameOne"/>
+   <item name="gameTwo.scene" props="" ifExport="默认" aName="gameTwo"/>
+</page>

@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":1280,"height":720,"runtime":"laya.display.Scene"},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"texture":"comp/menu_bg.jpg"},"compId":11},{"type":"Sprite","props":{"y":403,"x":210,"width":160,"texture":"comp/select.png","name":"select","height":160},"compId":6}],"loadList":["comp/menu_bg.jpg","comp/select.png"],"loadList3D":[]}
