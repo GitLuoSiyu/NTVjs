@@ -17,7 +17,8 @@ function refreshRem(width = 1280, height = 720){
         console.log(zoom)
     }
     console.log(document.getElementsByTagName("body"))
-    document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
+    // document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
+    docEl.style.transform = "scale("+zoom+")";
     return zoom;
     // var width = docEl.getBoundingClientRect().width;
     // var height = docEl.getBoundingClientRect().height;

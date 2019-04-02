@@ -25,24 +25,24 @@
         background-color: #171717;
       }
       #game_bg { position: relative; z-index: 1;}
-      #game_bg div { z-index: 2; position: absolute; background: url(./../assets/img/map_item_bg.png) no-repeat center; background-size: 100% 100%; width: 0.6rem; height: 0.6rem;}
-      #game_bg #map-11 {left: 2.1rem; top: 2.9rem;}
-      #game_bg #map-12 {left: 2.46rem; top: 3.8rem;}
-      #game_bg #map-13 {left: 2.86rem; top: 4.6rem;}
-      #game_bg #map-14 {left: 4.3rem; top: 5.1rem;}
-      #game_bg #map-15 {left: 5.56rem; top: 5.3rem;}
-      #game_bg #map-16 {left: 6.74rem; top: 4.6rem;}
-      #game_bg #map-17 {left: 7.86rem; top: 3.96rem;}
-      #game_bg #map-18 {left: 9.2rem; top: 3.6rem;}
-      #game_bg #map-19 {left: 10.8rem; top: 3.6rem;}
-      #game_bg #map-20 {left: 12.4rem; top: 3.3rem;}
-      #game_bg #player {left: 2.08rem; top: 2.54rem;z-index: 3; position: absolute; background: url(./../assets/img/level_player.png) no-repeat center; background-size: 100% 100%;width: 0.6rem; height: 0.6rem; display: inline-block;}
+      #game_bg div { z-index: 2; position: absolute; background: url(./../assets/img/map_item_bg.png) no-repeat center; background-size: 100% 100%; width: 60px; height: 60px;}
+      #game_bg #map-11 {left: 296px; top: 296px;}
+      #game_bg #map-12 {left: 326px; top: 380px;}
+      #game_bg #map-13 {left: 356px; top: 466px;}
+      #game_bg #map-14 {left: 464px; top: 516px;}
+      #game_bg #map-15 {left: 576px; top: 532px;}
+      #game_bg #map-16 {left: 684px; top: 460px;}
+      #game_bg #map-17 {left: 766px; top: 386px;}
+      #game_bg #map-18 {left: 880px; top: 360px;}
+      #game_bg #map-19 {left: 1020px; top: 360px;}
+      #game_bg #map-20 {left: 1140px; top: 330px;}
+      #game_bg #player {left: 294px; top: 256px;z-index: 3; position: absolute; background: url(./../assets/img/level_player.png) no-repeat center; background-size: 100% 100%;width: 60px; height: 60px; display: inline-block;}
     </style>
   </head>
   <body>
     <div
       id="shop_bg"
-      style="background:url(./../assets/img/levels_two_bg.jpg) no-repeat center; width: 100%; height: 100%; background-size: 100% 100%;"
+      style="background:url(./../assets/img/levels_two_bg.jpg) no-repeat center; width: 100%; height: 100%; background-size: contain;"
     >
     <div id="game_bg">
         <span id="player"></span>
@@ -127,53 +127,53 @@
       var select = document.querySelector('#player');
       switch (mapIndex) {
         case 1:
-          select.style.left = '2.08rem';
-          select.style.top = '2.54rem';
+          select.style.left = '294px';
+          select.style.top = '256px';
 
           break;
         case 2:
-          select.style.left = '2.44rem';
-          select.style.top = '3.46rem';
+          select.style.left = '324px';
+          select.style.top = '342px';
 
           break;
         case 3:
-          select.style.left = '2.84rem';
-          select.style.top = '4.26rem';
+          select.style.left = '354px';
+          select.style.top = '426px';
 
           break;
         case 4:
-          select.style.left = '4.28rem';
-          select.style.top = '4.76rem';
+          select.style.left = '462px';
+          select.style.top = '476px';
 
           break;
         case 5:
-          select.style.left = '5.54rem';
-          select.style.top = '4.96rem';
+          select.style.left = '574px';
+          select.style.top = '492px';
 
           break;
         case 6:
-          select.style.left = '6.72rem';
-          select.style.top = '4.26rem';
+          select.style.left = '682px';
+          select.style.top = '420px';
 
           break;
         case 7:
-          select.style.left = '7.84rem';
-          select.style.top = '3.62rem';
+          select.style.left = '764px';
+          select.style.top = '348px';
 
           break;
         case 8:
-          select.style.left = '9.18rem';
-          select.style.top = '3.26rem';
+          select.style.left = '878px';
+          select.style.top = '320px';
 
           break;
         case 9:
-          select.style.left = '10.78rem';
-          select.style.top = '3.26rem';
+          select.style.left = '1018px';
+          select.style.top = '320px';
 
           break;
         case 10:
-          select.style.left = '12.38rem';
-          select.style.top = '2.96rem';
+          select.style.left = '1138px';
+          select.style.top = '290px';
 
           break;
         default:

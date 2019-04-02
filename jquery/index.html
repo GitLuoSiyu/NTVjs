@@ -12,7 +12,6 @@
 </head>
 <body>
   <div id="game">
-    <div id="canvas"></div>
     <ul id="menu_maps">
       <li id="map1" class="" ></li>
       <li id="map2" class="" ></li>
@@ -20,7 +19,7 @@
       <li id="payOff" class="" ></li>
     </ul>
     <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
-    <!-- <audio src="./www/assets/media/select.ogg" id="audio_select"></audio> -->
+    <audio src="./www/assets/media/select.ogg" id="audio_select"></audio>
   </div>
   <script>
       var win = window;
@@ -157,7 +156,7 @@
       var go = document.querySelector("#shouzhi");
       switch(selectIndex){
         case 1:
-          go.style.left = "17%";
+          go.style.left = "25%";
           go.style.top = "60%";
           break;
         case 2:
@@ -165,11 +164,11 @@
           go.style.top = "60%";
           break;
         case 3:
-          go.style.left = "80%";
+          go.style.left = "75%";
           go.style.top = "60%";
           break;
         case 4:
-          go.style.left = "85%";
+          go.style.left = "80%";
           go.style.top = "13%";
           break;
         default:
