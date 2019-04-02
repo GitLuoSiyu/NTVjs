@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./www/css/common.css">
   <link rel="stylesheet" href="./www/css/index.css">
-  <script src="./www/js/rem.js"></script>
+  <!-- <script src="./www/js/rem.js"></script> -->
 </head>
 <body>
   <div id="game">
@@ -20,8 +20,52 @@
       <li id="payOff" class="" ></li>
     </ul>
     <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
-    <audio src="./www/assets/media/select.ogg" id="audio_select"></audio>
+    <!-- <audio src="./www/assets/media/select.ogg" id="audio_select"></audio> -->
   </div>
+  <script>
+      var win = window;
+      var doc = win.document;
+      var docEl = doc.documentElement;
+      var tid;
+
+      function refreshRem(width = 1280, height = 720){
+          var clientWidth = document.documentElement.clientWidth;
+          var clientHeight = document.documentElement.clientHeight;
+        var ratio = clientHeight / clientWidth;
+        let zoom = 1;
+          const normalRatio = height / width;
+          if (ratio < normalRatio) {
+              zoom = clientHeight / height;
+              console.log(zoom)
+        } else {
+              zoom = clientWidth / width;
+              console.log(zoom)
+          }
+          console.log(document.getElementsByTagName("body"))
+          console.log(window.document.documentElement)
+          docEl.style.transform = "scale("+zoom+")";
+          // document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
+          return zoom;
+      }
+      window.onload = function(){
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+      }
+
+      win.addEventListener('resize', function() {
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 150);
+      }, false);
+      win.addEventListener('pageshow', function(e) {
+          if (e.persisted) {
+              clearTimeout(tid);
+              tid = setTimeout(refreshRem, 150);
+          }
+      }, false);
+
+      refreshRem();
+  
+  </script>
   <script src="./www/js/store.js"></script>
   <script>
     window.onload= function(){

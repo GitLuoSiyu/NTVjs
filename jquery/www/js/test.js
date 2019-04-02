@@ -260,6 +260,8 @@ function play(){
                 window.runRight()
                 break;
               case "loop":
+                console.log('需要增加延时时间')
+
                 window.runLoop()
                 break;
               default:
@@ -626,13 +628,13 @@ function startDom() {
         break;
       case 37:
         window.caseSelectLeft(selectOrderIndex)
-        // if (selectOrderIndex <= 7 && selectOrderIndex > 5) {
-        //   selectOrderIndex = 11;
-        // } else if (selectOrderIndex <= 5) {
-        //   selectOrderIndex = 7;
-        // } else {
-        //   selectOrderIndex--;
-        // }
+        if (selectOrderIndex <= 7 && selectOrderIndex > 5) {
+          selectOrderIndex = 11;
+        } else if (selectOrderIndex <= 5) {
+          selectOrderIndex = 7;
+        } else {
+          selectOrderIndex--;
+        }
         window.startSelect(selectOrderIndex);
         break;
       case 38:

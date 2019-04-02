@@ -753,6 +753,7 @@ function startDom() {
         } else {
           selectOrderIndex--;
         }
+        
         window.startSelect(selectOrderIndex);
         break;
       case 38:
