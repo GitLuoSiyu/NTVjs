@@ -20,7 +20,7 @@
       style="background: url(./../assets/img/game1.png) no-repeat; background-size: 100% 100%; z-index: 1;"
     >
       <div id="game_tip">
-        <div id="map_title">关卡2的提示语:使用3个“前进”，即可过关哦！</div>
+        <div id="map_title">关卡2:使用3个“前进”，即可过关哦！</div>
       </div>
 
       <div id="right_orders">
@@ -104,6 +104,44 @@
         <!-- 失败后的错误提示 -->
       </div>
     </div>
+    <script>
+    var win = window;
+    var doc = win.document;
+    var docEl = doc.documentElement;
+    var tid;
+
+    function refreshRem(width = 1280, height = 720){
+      var clientWidth = document.documentElement.clientWidth;
+      var clientHeight = document.documentElement.clientHeight;
+      var ratio = clientHeight / clientWidth;
+      let zoom = 1;
+        const normalRatio = height / width;
+        if (ratio < normalRatio) {
+            zoom = clientHeight / height;
+            console.log(zoom)
+      } else {
+            zoom = clientWidth / width;
+            console.log(zoom)
+        }
+        docEl.style.transform = "scale("+zoom+")";
+        
+        return zoom;
+    }
+
+    win.addEventListener('resize', function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 150);
+    }, false);
+    win.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 150);
+        }
+    }, false);
+
+    refreshRem();
+
+    </script>
     <script src="./../js/store.js"></script>
     <script>
 

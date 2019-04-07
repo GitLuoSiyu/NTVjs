@@ -16,8 +16,10 @@ function refreshRem(width = 1280, height = 720){
         zoom = clientWidth / width;
         console.log(zoom)
     }
-    console.log(document.getElementsByTagName("body"))
+    // console.log(document.getElementsByTagName("body"))
     // document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
+    document.querySelector("#backgroud").style.transform = "scale("+zoom+")";
+    document.querySelectorAll("#backgroud div").style.transform = "scale("+zoom+")";
     docEl.style.transform = "scale("+zoom+")";
     return zoom;
     // var width = docEl.getBoundingClientRect().width;

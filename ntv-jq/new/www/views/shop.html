@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>商城</title>
+  <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./../css/common.css">
+  <style>
+    body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+      width: 100%;height: 100%;background-color: #171717;}
+  </style>
+</head>
+<body>
+  <div id="shop_bg"  style="background:url(./../assets/img/shop_bg.jpg) no-repeat center; width: 100%; height: 100%; background-size: 100% 100%;">
+    <div id="goods">
+
+    </div>
+    <div id="packages">
+      <div id="package_item">
+        <ul>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+          <li id="card_item" class=""><span id="card_num"></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <audio src="./../assets/media/loop-ingame.ogg" id="shopBgMusic" ></audio>
+</body>
+<script src="./../js/store.js"></script>
+<script>
+  window.onload = function(){
+    console.log('读取 用户信息');
+    let shopBgMusic = document.querySelector("#shopBgMusic")
+    shopBgMusic.loop = true;
+    shopBgMusic.play()
+    window.keyCode()
+  }
+
+  function keyCode(){
+    var selectIndex = 1;
+    // 默认选中的下标是 1- ，2-，3-，4-，5-，6-，7-，8-，9-
+    var isPaying = false;  
+    // false 标明在选择商品阶段，true是进入 商品兑换的确认框阶段
+    if(!isPaying) {
+      document.onkeydown = function(e){
+        e = e || event;
+        // console.log(e.keyCode) // 获取键盘编码
+        switch(e.keyCode) {
+          case 8:
+
+
+            break;
+          case 13:
+
+
+            break;
+          case 37:
+            console.log('left')
+
+            break;
+          case 38:
+            console.log('up')
+
+            break;
+          case 39:
+            console.log('right')
+
+            break;
+          case 40:
+            console.log('down')
+
+            break;
+          default:
+            break;
+        }
+      }
+    } else {
+      // console.log('进入商品确认框，屏蔽之前的键盘事件')
+      document.onkeydown = function(e){
+        e = e || event;
+        // console.log(e.keyCode) // 获取键盘编码
+        switch(e.keyCode) {
+          case 8:
+
+
+            break;
+          case 13:
+
+
+            break;
+          case 37:
+            console.log('left')
+
+            break;
+          case 38:
+            console.log('up')
+
+            break;
+          case 39:
+            console.log('right')
+
+            break;
+          case 40:
+            console.log('down')
+
+            break;
+          default:
+            break;
+        }
+      }
+
+    }
+  }
+
+  function selectFocus(){
+    console.log('根据下表值调整切换框的坐标位置')
+    
+
+  }
+
+  function onKeyDown(selectIndex){
+    console.log("控制选项框的位置",selectIndex)
+    switch(selectIndex) {
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
+        break;
+      case 6:
+
+        break;
+      default:
+        break;
+    }
+  }
+
+  function enterEvent(selectIndex){
+    console.log('按下Enter根据下标值改变坐标')
+    switch(selectIndex){
+      case 1:
+
+
+        break;
+      case 2:
+
+
+        break;
+      case 3:
+
+
+        break;
+      case 4:
+
+
+        break;
+      case 5:
+
+
+        break;
+      case 6:
+
+
+        break;
+      case 7:
+
+
+        break;
+      case 8:
+
+
+        break;
+      case 9:
+
+
+        break;
+      default:
+        break;
+    }
+  }
+
+
+</script>
+</html>

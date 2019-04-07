@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>游戏</title>
+    <link
+      rel="shortcut icon"
+      href="./../assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./../css/game.css" />
+    <!-- REM 必须在 css 之后 -->
+    <script src="./../js/rem.js"></script>
+  </head>
+  <body>
+    <div
+      id="backgroud"
+      style="background: url(./../assets/img/game2.jpg) no-repeat; background-size: 100% 100%; z-index: 1;"
+    >
+      <div id="game_tip">
+        <div id="map_title">关卡16的提示语:仔细看看，这个地图是不是中心对称图形？</div>
+      </div>
+
+      <div id="right_orders">
+        <ul id="orders">
+          <div id="order_select"></div>
+          <li id="order_0" class="dir "></li>
+          <li id="order_1" class="dir "></li>
+          <li id="order_2" class="dir "></li>
+          <li id="order_3" class="dir "></li>
+          <li id="order_4" class="dir "></li>
+          <li id="order_5" class="dir "></li>
+          <li id="order_6" class="dir "></li>
+          <li id="order_7" class="dir "></li>
+        </ul>
+      </div>
+
+      <div id="btn_order">
+        <span id="btn_select"></span>
+        <div id="walk"><img src="" /></div>
+        <div id="left"><img src="" /></div>
+        <div id="right"><img src="" /></div>
+        <div id="loop"><img src="" /></div>
+        <div id="cancel"><img src="" /></div>
+      </div>
+
+      <div id="preview">
+        <div id="order_view_walk" class=""></div>
+        <div id="order_view_left" class=""></div>
+        <div id="order_view_right" class=""></div>
+      </div>
+
+      <div id="xunhuan">
+        <ul id="xun_orders">
+          <li id="xun_0" class="xun "></li>
+          <li id="xun_1" class="xun "></li>
+          <li id="xun_2" class="xun "></li>
+          <li id="xun_3" class="xun "></li>
+          <li id="xun_4" class="xun "></li>
+          <li id="xun_5" class="xun "></li>
+          <li id="xun_6" class="xun "></li>
+          <li id="xun_7" class="xun "></li>
+        </ul>
+      </div>
+
+      <div id="footer">
+        <span id="playFocus"></span>
+        <span id="footFocus"></span>
+        <div id="play"><img src="./../assets/img/btn-play.png" alt="" /></div>
+        <div id="reset"><img src="./../assets/img/reset.png" alt="" /></div>
+        <div id="toback"><img src="./../assets//img/toback.png" alt="" /></div>
+      </div>
+
+      <div id="mask">
+        <div id="game_over">
+          <ul id="star">
+            <li id="star_item1"><img src="" alt="" /></li>
+            <li id="star_item2"><img src="" alt="" /></li>
+            <li id="star_item3"><img src="" alt="" /></li>
+          </ul>
+          <div id="over_btn">
+            <div id="over_select"></div>
+            <div id="next_game">
+              <img src="./../assets/img/nextGame.png" alt="" />
+            </div>
+            <div id="reset_game">
+              <img src="./../assets/img/resetGame.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="dom_map"
+        style="background: url(./../assets/img/maps/map2-16.png) no-repeat center; width: 6rem; height: 6rem;"
+      >
+        <div id="gold_box"></div>
+        <img id="hero" src="./../assets/img/hero-right.png" />
+      </div>
+
+      <div id="faile_prompf">
+        <!-- 失败后的错误提示 -->
+      </div>
+    </div>
+    <script src="./../js/store.js"></script>
+    <script>
+
+      var mapinfo = {
+        gameMap:[
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 3, 1, 3, 0, 0, 0, 0, 0, 0],
+          [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+          [0, 3, 1, 1, 1, 3, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+          [0, 0, 0, 3, 1, 2, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ],          // 注意 x 轴 和 y 轴, 竖轴 是x，横轴是y
+        coorX: 1, // 地图 1 X 的信息
+        coorY: 2, // 地图 1 Y 的信息
+        playerCoorX: '',
+        playerCoorY: '',
+        goldX: 5,
+        goldY: 5,
+        playerTop:'1.58rem',
+        playerLeft:'1.72rem',
+        goldTop: '2.86rem',
+        goldLeft: '2.86rem',
+        title: '收集XX卡片',
+        faile: '关卡提示:利用循环 田 ↱ → → ↰ 田，循环内→ → ↱ → → ↱ → →',
+      };
+    </script>
+    <script src="./../js/common.js"></script>
+    <script>
+      window.onload = function() {
+        this.startDom();
+        var playerImg = document.querySelector('#hero');
+        playerImg.style.top = mapinfo.playerTop;
+        playerImg.style.left = mapinfo.playerLeft;
+
+        var dom_map = document.querySelector('#dom_map');
+        dom_map.style.left = '2.5rem';
+        dom_map.style.top = '-6.45rem';
+      };
+    </script>
+  </body>
+</html>

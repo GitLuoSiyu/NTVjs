@@ -1,0 +1,140 @@
+*{
+  box-sizing: border-box;
+  margin:0;padding:0;  outline: 0;  vertical-align: baseline; 
+}
+html,body{ 
+  color:#000; 
+  background:#fff; 
+  font:0.12rem/0.22rem Verdana,Arial,sans-serif,"Times New Roman",思源宋体; 
+  width:100%;
+  overflow: hidden;
+}
+input,select,button{ 
+   font-size:100%;
+   outline:0;
+   vertical-align:middle;
+   -webkit-appearance: none;
+}
+button{
+  border: 0;
+  background-clip: padding-box;
+}
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+ol,ul,li { list-style:none;}
+/* 定义图片边框，当图片作为链接内容被填充时，会有默认边框出现，重定义掉 */
+img{ 
+   border:none;
+   vertical-align:baseline;
+}
+a, a:link, a:visited{
+   color:#000;
+   text-decoration:none;
+}
+a:hover{ 
+  color:#000; 
+  text-decoration:underline;
+}
+/* 标签属性，textarea,input 强制输入时内容超出时换行，打断 */
+textarea,input{ 
+  word-wrap:break-word; 
+  word-break:break-all; 
+} 
+span,p,div{ 
+  word-wrap:break-word;
+} 
+.lf{ float:left; }
+.rt{ float:right; }
+.clearfix{ content: ''; display: block; clear: both; }
+
+
+/* Game.html  CSS */
+body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+  width: 100%;height: 100%;background-color: #171717;}
+
+#backgroud{
+  /* background: url(./../assets/img/world.png) no-repeat; */
+  /* width: 12.8rem; height: 7.2rem; */
+  width: 100%; height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+#game_tip{position: relative; width: 50%; height: 0.4rem; left: 12%; top: 6%;}
+#game_tip #map_number{display: inline-block; width: 0.14rem; height: 0.28rem;position: absolute; left: 11%; top: 0.02rem;}
+#game_tip #map_number img{width: 100%; height: 100%;}
+#game_tip #map_title{position: absolute;color: #FFFFFF;font: 600 0.14rem/2 "";left: 30%;top: 0.02rem;}
+
+#right_orders{position: relative; width: 2.6rem; height: 1.4rem; left: 75%; top: 2%;}
+#right_orders #orders{display: inline-block;}
+#right_orders #orders li{display: inline-block;position: absolute; border-radius: 0.08rem; width: 0.44rem; height: 0.44rem;}
+#right_orders #orders #order_0{left: 0.27rem; top: 0.22rem;}
+#right_orders #orders #order_1{left: 0.81rem; top: 0.22rem;}
+#right_orders #orders #order_2{left: 1.36rem; top: 0.22rem;}
+#right_orders #orders #order_3{left: 1.9rem; top: 0.22rem;}
+#right_orders #orders #order_4{left: 0.27rem; top: 0.75rem;}
+#right_orders #orders #order_5{left: 0.81rem; top: 0.75rem;}
+#right_orders #orders #order_6{left: 1.36rem; top: 0.75rem;}
+#right_orders #orders #order_7{left: 1.9rem; top: 0.75rem;}
+#right_orders #orders .order_walk{background: url(./../assets/img/walk.png) no-repeat center;}
+#right_orders #orders .order_left{background: url(./../assets/img/left.png) no-repeat center;}
+#right_orders #orders .order_right{background: url(./../assets/img/right.png) no-repeat center;}
+#right_orders #orders .order_loop{background: url(./../assets/img/loop.png) no-repeat center;}
+#order_select{z-index: 13; ;position: absolute; width: 2.76rem; height: 2.76rem; left: 9.52rem; top: -0.14rem; display: inline-block; background: url(./../assets//img/ordersFocus.png) no-repeat center; background-size: 100%; z-index: 12; }
+
+#btn_order{position: relative; width: 3rem; height: 0.8rem; left: 74%; top: 6%;}
+#btn_order div {position: absolute; display: inline-block; width: 0.44rem; height: 0.44rem; top: 0.2rem; border-radius: 0.08rem;}
+#btn_order #walk{left: 0.05rem; background: url(./../assets/img/walk.png) no-repeat center;}
+#btn_order #left{left: 0.65rem; background: url(./../assets/img/left.png) no-repeat center;}
+#btn_order #right{left: 1.25rem; background: url(./../assets/img/right.png) no-repeat center;}
+#btn_order #loop{left: 1.85rem; background: url(./../assets/img/loop.png) no-repeat center;}
+#btn_order #cancel{left: 2.4rem; background: url(./../assets/img/cancel.png) no-repeat center; background-size: 100%;}
+#btn_select{position: absolute; width: 0.75rem; height: 0.75rem; display: inline-block; background: url(./../assets//img/btnFoucs.png) no-repeat center; background-size: 100%; left: 12.8rem; top: 2.28rem; z-index: 11;}
+
+#preview{position: relative; width: 1.08rem; height: 0.88rem; left: 64%; top: -6%; border-radius: 0.08rem ;}
+#preview #order_view_walk{ visibility: hidden; position: absolute; left: 0.1rem; top: 0.04rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_walk.png) no-repeat center;}
+#preview #order_view_left{ visibility: hidden;  position: absolute; left: 0.1rem; top: 0.04rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_left.png) no-repeat center;}
+#preview #order_view_right{ visibility: hidden; position: absolute; left: 0.1rem; top: 0.04rem; width: 0.98rem; height: 0.78rem; background: url(./../assets/img/pre_right.png) no-repeat center;}
+
+#xunhuan{position: relative; width: 2.64rem; height: 1.48rem; left: 75%; top: 1%;}
+#xunhuan #xun_orders li{display: inline-block;position: absolute; border-radius: 0.08rem; width: 0.44rem; height: 0.44rem;}
+#xunhuan #xun_orders #xun_0{left: 0.28rem; top: 0.26rem;}
+#xunhuan #xun_orders #xun_1{left: 0.83rem; top: 0.26rem;}
+#xunhuan #xun_orders #xun_2{left: 1.38rem; top: 0.26rem;}
+#xunhuan #xun_orders #xun_3{left: 1.93rem; top: 0.26rem;}
+#xunhuan #xun_orders #xun_4{left: 0.28rem; top: 0.8rem;}
+#xunhuan #xun_orders #xun_5{left: 0.83rem; top: 0.8rem;}
+#xunhuan #xun_orders #xun_6{left: 1.38rem; top: 0.8rem;}
+#xunhuan #xun_orders #xun_7{left: 1.93rem; top: 0.8rem;}
+#xun_orders .loop_walk{background: url(./../assets/img/walk.png) no-repeat center;}
+#xun_orders .loop_left{background: url(./../assets/img/left.png) no-repeat center;}
+#xun_orders .loop_right{background: url(./../assets/img/right.png) no-repeat center;}
+#xun_orders .loop_loop{background: url(./../assets/img/loop.png) no-repeat center;}
+
+#footer {position: relative; width: 4.3rem; height: 1.4rem; left: 64%; top: 9%;}
+#footer div {display: inline-block; outline: none; position: absolute; top: 0.54rem;}
+#footer div img {width: 100%; height: 100%; display: block;}
+#footer #play{width: 2.2rem; height: 1.0rem; left: -0.06rem;}
+#footer #reset{width: 0.96rem; height: 0.96rem; left: 2.18rem;}
+#footer #toback{width: 0.96rem; height: 0.96rem; left: 3.1rem;}
+#footFocus{z-index: 14; position: absolute; display: inline-block; width: 0.9rem; height: 0.9rem; left: 10.4rem; top: 6.18rem; background: url(./../assets/img/footFocus.png) no-repeat center; background-size: 100%;}
+#playFocus{z-index: 14; visibility: hidden; position: absolute; display: inline-block; width: 2.1rem; height: 1.0rem; left: 8.18rem; top: 6.14rem; background: url(./../assets/img/playFocus.png) no-repeat center; background-size: 100%;}
+
+#mask {display: none; position: relative; width: 100%; height: 120%; background: rgba(0,0,0,.7); left: 0; top: -90%; z-index: 99;}
+#mask #game_over {z-index: 100; position: absolute; width: 12.8rem; height: 7.2rem; background-size: 100%; background: url(./../assets/img/Gamemask.png) no-repeat center; left: 0; top: 4%;}
+#mask #game_over #star{z-index: 101;}
+/* 
+#mask #game_over #star #star_item1{}
+#mask #game_over #star #star_item2{}
+#mask #game_over #star #star_item3{} 
+*/
+#mask #game_over #over_btn div{display: inline-block; width: 2rem; height: 0.9rem; position: absolute;}
+#mask #game_over #over_btn #next_game{left: 34%; top: 68%;}
+#mask #game_over #over_btn #reset_game{left: 51%; top: 68%;}
+#mask #game_over #over_btn img{display: block; width: 100%; height: 100%;}
+#over_select {position: absolute; display: inline-block; outline: none; width: 2rem; height: 0.9rem; z-index: 102; left: 34%; top: 60.8%; background: url(./../assets/img/over_select.png) no-repeat center;}
+
+#dom_map{position: absolute; display: inline-block; width: 5.2rem; height: 7.2rem; background-size: 100%; left: 2.5rem; top: 2.15rem; z-index: 99;}
+#hero{position: absolute; z-index: 110; }
+#gold_box{position: absolute; width: 30px; height: 30px; z-index: 111;;background: url(./../assets//img/block.png) no-repeat; background-position: 0 30px; background-position: 0rem 0rem;}

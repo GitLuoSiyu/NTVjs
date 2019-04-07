@@ -35,13 +35,13 @@
           const normalRatio = height / width;
           if (ratio < normalRatio) {
               zoom = clientHeight / height;
-              console.log(zoom)
+              // console.log(zoom)
         } else {
               zoom = clientWidth / width;
-              console.log(zoom)
+              // console.log(zoom)
           }
-          console.log(document.getElementsByTagName("body"))
-          console.log(window.document.documentElement)
+          // console.log(document.getElementsByTagName("body"))
+          // console.log(window.document.documentElement)
           docEl.style.transform = "scale("+zoom+")";
           // document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
           return zoom;
@@ -156,7 +156,7 @@
       var go = document.querySelector("#shouzhi");
       switch(selectIndex){
         case 1:
-          go.style.left = "25%";
+          go.style.left = "20%";
           go.style.top = "60%";
           break;
         case 2:
@@ -164,7 +164,7 @@
           go.style.top = "60%";
           break;
         case 3:
-          go.style.left = "75%";
+          go.style.left = "80%";
           go.style.top = "60%";
           break;
         case 4:

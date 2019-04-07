@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./www/css/common.css">
+  <style>
+    body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+      width: 100%;height: 100%;background-color: #171717;}
+    body{background: url(./www/assets/img/menu_bg.jpg) no-repeat center;
+      width: 100%; height: 100%; background-size: contain;
+      }
+    #game{
+      width: 100%; height: 100%; background-size: contain;
+      position: relative;
+    }
+    #shouzhi{display: block; position: absolute; z-index: 9; left: 50%; top: 60%; width: 100px; height: 100px;}
+    #shouzhi img{width: 100%; height: 100%;}
+  </style>
+</head>
+<body>
+  <div id="game">
+    <div id="shouzhi"><img src="./www/assets/img/select.png" alt=""></div>
+    <audio src="./www/assets/media/select.ogg" id="audio_select"></audio>
+  </div>
+  <script>
+      var win = window;
+      var doc = win.document;
+      var docEl = doc.documentElement;
+      var body = document.body;
+      var bg = document.querySelector("#game")
+      var select = document.querySelector("#shouzhi")
+      var tid;
+      function refreshRem(width = 1280, height = 720){
+        var clientWidth = document.documentElement.clientWidth;
+        var clientHeight = document.documentElement.clientHeight;
+        var ratio = clientHeight / clientWidth;
+        let zoom = 1;
+        const normalRatio = height / width;
+        if (ratio < normalRatio) {
+            zoom = clientHeight / height;
+        } else {
+            zoom = clientWidth / width;
+        }
+        select.style.transform = "scale("+zoom+")";
+        bg.style.transform = "scale("+zoom+")";
+        body.style.transform = "scale("+zoom+")";
+        return zoom;
+      }
+      window.onload = function(){
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+      }
+      win.addEventListener('resize', function() {
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 150);
+      }, false);
+      win.addEventListener('pageshow', function(e) {
+          if (e.persisted) {
+              clearTimeout(tid);
+              tid = setTimeout(refreshRem, 150);
+          }
+      }, false);
+      refreshRem();
+  </script>
+  <script src="./www/js/store.js"></script>
+  <script>
+    window.onload= function(){
+      this.boot();
+    }
+    function playAudioSelect(){
+      var audio_select = document.querySelector("#audio_select")
+      audio_select.play()
+    }
+    function boot(){
+      var selectIndex = 2;
+      // 默认手指停在 map2 中间的位置， 左边 map1-1，右边map3-3, 下面付费对应4
+    　document.onkeydown = function(e){
+        event = e || event;
+        // 这里用 三目 运算符 失效
+        var go = document.querySelector("#shouzhi");
+        switch(event.keyCode){
+          case 8: 
+            console.log('在首页点击了返回')
+            break;
+          case 13:
+            switch(selectIndex){
+              case 1:
+                window.location.href = "./www/views/levelsone.html";
+                break;
+              case 2:
+                window.location.href = "./www/views/levelstwo.html";
+                break;
+              case 3:
+                  self.location.href = "./www/views/shop.html";
+                break;
+              case 4:
+                  self.location.href = "./www/views/purchase.html";
+                break;
+              default:
+                break;
+            }
+            break;
+          case 37:
+            if(selectIndex == 1){
+              selectIndex = 4;
+            } else {
+              selectIndex--;
+            }
+            window.playAudioSelect()
+            window.keyBoard(selectIndex);
+            break;
+          case 38:
+            if(selectIndex == 4){
+              selectIndex = 1;
+            } else {
+              selectIndex++;
+            }
+            window.playAudioSelect()
+            window.keyBoard(selectIndex);
+            break;
+          case 39:
+            if(selectIndex == 4){
+              selectIndex = 1;
+            } else {
+              selectIndex++;
+            }
+            window.playAudioSelect()
+            window.keyBoard(selectIndex);
+            break;
+          case 40:
+            if(selectIndex == 1){
+              selectIndex = 4;
+            } else {
+              selectIndex--;
+            }
+            window.playAudioSelect()
+            window.keyBoard(selectIndex);
+            break;
+        }  
+  　　}
+    }
+    
+    function keyBoard(selectIndex){
+      var go = document.querySelector("#shouzhi");
+      switch(selectIndex){
+        case 1:
+          go.style.left = "25%";
+          go.style.top = "60%";
+          break;
+        case 2:
+          go.style.left = "50%";
+          go.style.top = "60%";
+          break;
+        case 3:
+          go.style.left = "75%";
+          go.style.top = "60%";
+          break;
+        case 4:
+          go.style.left = "80%";
+          go.style.top = "13%";
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Levels-one</title>
+  <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="./../css/common.css"> -->
+  <script src="./../js/jquery.js"></script>
+  <style>
+    html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+      width: 100%;height: 100%;background-color: #171717;}
+    body{ background: url(./../assets/img/map_item_bg.png) no-repeat; background-size: 100% 100%;
+    width: 1280px;
+    height: 720px;
+    background-size: contain;}
+    #game_bg { position: relative; z-index: 1; }
+    #game_bg div { z-index: 2; position: absolute; background: url(./../assets/img/map_item_bg.png) no-repeat center; background-size: 100% 100%; width: 60px; height: 60px;}
+    #game_bg #map-1 {left: 120px; top: 220px;}
+    #game_bg #map-2 {left: 210px; top: 260px;}
+    #game_bg #map-3 {left: 320px; top: 290px;}
+    #game_bg #map-4 {left: 420px; top: 270px;}
+    #game_bg #map-5 {left: 500px; top: 320px;}
+    #game_bg #map-6 {left: 610px; top: 350px;}
+    #game_bg #map-7 {left: 710px; top: 390px;}
+    #game_bg #map-8 {left: 820px; top: 360px;}
+    #game_bg #map-9 {left: 940px; top: 380px;}
+    #game_bg #map-10 {left: 1060px; top: 400px;}
+    #game_bg #player {left: 118px; top: 180px;z-index: 3; position: absolute; background: url(./../assets/img/level_player.png) no-repeat center; background-size: 100% 100%;width: 60px; height: 60px; display: inline-block;}
+  </style>
+</head>
+<body>
+  <div id="shop_bg"  style="background:url(./../assets/img/levels_one_bg.jpg) no-repeat center; width: 100%; height: 100%; background-size: contain;">
+    <div id="game_bg">
+      <span id="player"></span>
+      <div id="map-1" class=""></div>
+      <div id="map-2" class=""></div>
+      <div id="map-3" class=""></div>
+      <div id="map-4" class=""></div>
+      <div id="map-5" class=""></div>
+      <div id="map-6" class=""></div>
+      <div id="map-7" class=""></div>
+      <div id="map-8" class=""></div>
+      <div id="map-9" class=""></div>
+      <div id="map-10" class=""></div>
+    </div>
+  </div>
+  <script>
+      var win = window;
+      var doc = win.document;
+      var docEl = doc.documentElement;
+      var body = document.body;
+      var tid;
+  
+      function refreshRem(width = 1280, height = 720){
+          var clientWidth = document.documentElement.clientWidth;
+          var clientHeight = document.documentElement.clientHeight;
+        var ratio = clientHeight / clientWidth;
+        let zoom = 1;
+          const normalRatio = height / width;
+          if (ratio < normalRatio) {
+              zoom = clientHeight / height;
+        } else {
+              zoom = clientWidth / width;
+          }
+          // console.log(document.body)
+          // console.log(body)
+          body.style.transform = "scale("+zoom+")";
+          // docEl.style.transform = "scale("+zoom+")";
+          return zoom;
+      }
+      window.onload = function(){
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+      }
+  
+      win.addEventListener('resize', function() {
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 150);
+      }, false);
+      win.addEventListener('pageshow', function(e) {
+          if (e.persisted) {
+              clearTimeout(tid);
+              tid = setTimeout(refreshRem, 150);
+          }
+      }, false);
+      refreshRem();
+    </script>
+</body>
+<script src="./../js/store.js"></script>
+<script>
+  window.onload = function(){
+    window.load()
+  }
+  function load(){
+    console.log('在这里，先判断用户身份和 关卡情况，再进入下一个函数')
+    window.boot()
+  }
+  function boot() {
+    // console.log('入口函数')
+    var mapIndex = 1;
+    // 猴子默认下标
+    document.onkeydown = function(e){
+      event = e || event;
+      switch(event.keyCode) {
+        case 8:
+          window.history.go(-1)
+          break;
+        case 13:
+          window.enterMap(mapIndex)
+          break;
+        case 37:
+          if(mapIndex <= 1) {
+            mapIndex = 10;
+          } else {
+            mapIndex--
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 38:
+          if(mapIndex >= 10) {
+            mapIndex = 1;
+          } else {
+            mapIndex++
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 39:
+          if(mapIndex >= 10) {
+            mapIndex = 1;
+          } else {
+            mapIndex++
+          }
+          window.movePlayer(mapIndex)
+          break;
+        case 40:
+          if(mapIndex <= 1) {
+            mapIndex = 10;
+          } else {
+            mapIndex--
+          }
+          window.movePlayer(mapIndex)
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  function movePlayer(mapIndex){
+    // console.log(mapIndex)
+    var select = document.querySelector("#player")
+    switch(mapIndex) {
+      case 1:
+        select.style.left = "118px";
+        select.style.top = "180px";
+
+        break;
+      case 2:
+        select.style.left = "208px";
+        select.style.top = "222px";
+
+        break;
+      case 3:
+        select.style.left = "318px";
+        select.style.top = "252px";
+
+        break;
+      case 4:
+        select.style.left = "418px";
+        select.style.top = "232px";
+
+        break;
+      case 5:
+        select.style.left = "498px";
+        select.style.top = "282px";
+
+        break;
+      case 6:
+        select.style.left = "608px";
+        select.style.top = "312px";
+
+        break;
+      case 7:
+        select.style.left = "708px";
+        select.style.top = "352px";
+
+        break;
+      case 8:
+        select.style.left = "818px";
+        select.style.top = "322px";
+
+        break;
+      case 9:
+        select.style.left = "938px";
+        select.style.top = "342px";
+
+        break;
+      case 10:
+        select.style.left = "1058px";
+        select.style.top = "362px";
+
+        break;
+      default:
+        break;
+    }
+  }
+
+  function enterMap(mapIndex){
+    switch(mapIndex) {
+      case 1:
+        self.location.href = "./map1.html";
+
+        break;
+      case 2:
+        self.location.href = "./map2.html";
+
+        break;
+      case 3:
+        self.location.href = "./map3.html";
+
+        break;
+      case 4:
+        self.location.href = "./map4.html";
+
+        break;
+      case 5:
+        self.location.href = "./map5.html";
+
+        break;
+      case 6:
+        self.location.href = "./map6.html";
+
+        break;
+      case 7:
+        self.location.href = "./map7.html";
+
+        break;
+      case 8:
+        self.location.href = "./map8.html";
+
+        break;
+      case 9:
+        self.location.href = "./map9.html";
+
+        break;
+      case 10:
+        self.location.href = "./map10.html";
+
+        break;
+      default:
+        break;
+    }
+  }
+</script>
+</html>

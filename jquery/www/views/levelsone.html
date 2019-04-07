@@ -7,7 +7,7 @@
   <title>Levels-one</title>
   <link rel="shortcut icon" href="./../assets/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./../css/common.css">
-  <script src="./../js/rem.js"></script>
+  <!-- <script src="./../js/rem.js"></script> -->
   <style>
     /* html{font-size: 625%;} */
     body,html{ margin: 0;padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
@@ -43,7 +43,53 @@
       <div id="map-10" class=""></div>
     </div>
   </div>
+  <script>
+    var win = window;
+    var doc = win.document;
+    var docEl = doc.documentElement;
+    var tid;
+
+    function refreshRem(width = 1280, height = 720){
+        var clientWidth = document.documentElement.clientWidth;
+        var clientHeight = document.documentElement.clientHeight;
+      var ratio = clientHeight / clientWidth;
+      let zoom = 1;
+        const normalRatio = height / width;
+        if (ratio < normalRatio) {
+            zoom = clientHeight / height;
+            console.log(zoom)
+      } else {
+            zoom = clientWidth / width;
+            console.log(zoom)
+        }
+        // console.log(document.getElementsByTagName("body"))
+        // console.log(window.document.documentElement)
+        document.querySelector("#game_bg").style.transform = "scale("+zoom+")";
+        docEl.style.transform = "scale("+zoom+")";
+        // document.getElementsByTagName("body").style.transform = "scale("+zoom+")";
+        return zoom;
+    }
+    window.onload = function(){
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);
+    }
+
+    win.addEventListener('resize', function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 150);
+    }, false);
+    win.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 150);
+        }
+    }, false);
+
+    refreshRem();
+
+</script>
 </body>
+
 <script src="./../js/store.js"></script>
 <script>
   window.onload = function(){
